@@ -22,6 +22,10 @@ public class LaptopController {
 	@Autowired
 	LaptopService laptopService;
 	
+	
+	/*
+	 * Add new laptop 
+	 */
 	@RequestMapping(method = RequestMethod.POST , value = "/create")
 	public TechRingResponse createLaptop(@RequestBody LaptopRequest laptopRequest) {
 		

@@ -22,6 +22,9 @@ public class LapBrandController {
 	@Autowired
 	LaptopBrandService laptopBrandService;
 	
+	/*
+	 * Added new laptop brand 
+	 */
 	@RequestMapping(method = RequestMethod.POST , value = "/create")
 	public TechRingResponse createLapBrand(@RequestBody LaptopBrandRequest laptopBrandRequest) {
 		
@@ -34,6 +37,9 @@ public class LapBrandController {
 		return response;
 	}
 	
+	/*
+	 * Get all laptop brand 
+	 */
 	@RequestMapping(method = RequestMethod.GET , value = "/getAll")
 	public TechRingResponse findLaptopBrands() {
 		
