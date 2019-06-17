@@ -11,7 +11,10 @@ public enum TechRingApplicationErrors {
 	LAPTOP_NOT_CREATED("007","Laptop is not created, Please try again little while"),
 	LAPTOP_BRAND_NAME_ALREADY_EXISTS("008","Laptop Brand Name already exists, Please try another brand name"),
 	LAPTOP_BRAND_NOT_CREATED("009","Laptop brand not created"),
-	LAPTOP_BRAND_NOT_FOUND("0010","Laptop brand not found");
+	LAPTOP_BRAND_NOT_FOUND("0010","Laptop brand not found"),
+	PCPART_NOT_CREATED("011","PC Part is not created, Please try again little while"),
+	PCPART_ALLREADY_EXISTS("012","PC Part already exists"),
+	PCPART_NOT_FOUND("013","PC Part Not Found");
 	
 	private String statusCode;
 	private String statusMessage;
