@@ -33,7 +33,7 @@ public class LaptopBrandServiceImpl implements LaptopBrandService{
 			if(result != null) {
 				HashMap<String, String> hm = new HashMap<>();
 				
-				hm.put("message", "Laptop rand created successfully");
+				hm.put("message", "Laptop created successfully");
 				return hm;
 			}
 			else {

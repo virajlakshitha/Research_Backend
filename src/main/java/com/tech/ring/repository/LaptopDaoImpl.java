@@ -1,6 +1,8 @@
 package com.tech.ring.repository;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -40,6 +42,23 @@ public class LaptopDaoImpl implements LaptopDao{
 			
 			return null;
 		}
+	}
+
+	@Override
+	public List<Laptop> findLaptop(String key) {
+
+		try {
+			
+			Query query = new Query();
+			query.addCriteria(Criteria.where("lapBrand").is(key));
+			return mongoTemplate.find(query , Laptop.class);
+			
+		} catch (Exception e) {
+			
+			return null;
+		}
+		
+		
 	}
 
 }

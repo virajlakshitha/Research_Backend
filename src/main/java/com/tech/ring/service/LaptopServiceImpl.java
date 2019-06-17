@@ -1,6 +1,7 @@
 package com.tech.ring.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,6 +59,19 @@ public class LaptopServiceImpl implements LaptopService{
 			throw new TechRingException(TechRingApplicationErrors.LAPTOP_ALLREADY_EXISTS);
 		}
 				
+	}
+
+	@Override
+	public List<Laptop> getLaptopByBrandWise(String key) {
+
+		List<Laptop> laptops = laptopDao.findLaptop(key);
+		
+		if(laptops != null && !laptops.isEmpty()) {
+			return laptops;
+		}
+		else {
+		  throw new TechRingException(TechRingApplicationErrors.CAN_NOT_FIND_MATCHING_RESULT);	
+		}
 	}
 
 }

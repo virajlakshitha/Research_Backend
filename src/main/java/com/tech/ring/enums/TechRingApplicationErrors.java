@@ -11,7 +11,8 @@ public enum TechRingApplicationErrors {
 	LAPTOP_NOT_CREATED("007","Laptop is not created, Please try again little while"),
 	LAPTOP_BRAND_NAME_ALREADY_EXISTS("008","Laptop Brand Name already exists, Please try another brand name"),
 	LAPTOP_BRAND_NOT_CREATED("009","Laptop brand not created"),
-	LAPTOP_BRAND_NOT_FOUND("0010","Laptop brand not found");
+	LAPTOP_BRAND_NOT_FOUND("0010","Laptop brand not found"),
+	CAN_NOT_FIND_MATCHING_RESULT("0011","Sorry , We can not find matching result");
 	
 	private String statusCode;
 	private String statusMessage;
