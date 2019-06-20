@@ -36,6 +36,8 @@ public class Laptop {
 	private String gpuMemorySize;
 	
 	private String gpuBooStSpeed;
+	
+	private String imageSource;
 
 	public String getId() {
 		return id;
@@ -155,5 +157,13 @@ public class Laptop {
 
 	public void setGpuBooStSpeed(String gpuBooStSpeed) {
 		this.gpuBooStSpeed = gpuBooStSpeed;
+	}
+
+	public String getImageSource() {
+		return imageSource;
+	}
+
+	public void setImageSource(String imageSource) {
+		this.imageSource = imageSource;
 	}	
 }

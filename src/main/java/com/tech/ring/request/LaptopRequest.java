@@ -32,6 +32,8 @@ public class LaptopRequest {
 	private String gpuMemorySize;
 	
 	private String gpuBooStSpeed;
+	
+	private String imageSource;
 
 	public String getLapName() {
 		return lapName;
@@ -143,6 +145,14 @@ public class LaptopRequest {
 
 	public void setGpuBooStSpeed(String gpuBooStSpeed) {
 		this.gpuBooStSpeed = gpuBooStSpeed;
+	}
+
+	public String getImageSource() {
+		return imageSource;
+	}
+
+	public void setImageSource(String imageSource) {
+		this.imageSource = imageSource;
 	}
 	
 	

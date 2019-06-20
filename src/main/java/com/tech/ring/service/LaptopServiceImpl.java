@@ -41,6 +41,7 @@ public class LaptopServiceImpl implements LaptopService{
 			newLaptop.setBatteryCapacity(laptopRequest.getBatteryCapacity());
 			newLaptop.setGpuMemorySize(laptopRequest.getGpuMemorySize());
 			newLaptop.setGpuBooStSpeed(laptopRequest.getGpuBooStSpeed());
+			newLaptop.setImageSource(laptopRequest.getImageSource());
 			
 			Laptop lapTopResult = laptopDao.saveLaptop(newLaptop);
 			
