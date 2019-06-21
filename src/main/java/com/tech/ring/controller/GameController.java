@@ -39,7 +39,7 @@ public class GameController {
 		List<Game> games = gameService.getAllGames();
 		
 		TechRingResponse response = new TechRingResponse();
-		response.setResponseCode("201");
+		response.setResponseCode("111");
 		response.setResponseObject(games);
 		
 		return response;
