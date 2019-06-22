@@ -38,7 +38,7 @@ public class PCPartController {
 	@RequestMapping(method = RequestMethod.GET , value = "/{category}/byName/{name}")
 	public String getPCPart(@RequestParam String name, String category) {
 		
-		String Path = "python C:\\Users\\viraj\\Desktop\\Test\\JavaApplication10\\src\\javaapplication10\\abc.py";
+		String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Python\\Search_products_v1.py";
 		String ret = "";
 		try {
             Process p = Runtime.getRuntime().exec(Path);
@@ -50,21 +50,20 @@ public class PCPartController {
         }
 		return ret;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET , value = "/{category}/byId/{id}")
+	public TechRingResponse getPCPartById(@RequestParam String category, String id) {
+		
+		
+		return null;
+	}
 
 	@RequestMapping(method = RequestMethod.GET , value = "/getVendorPrices/{name}")
 	public String getVendorPrices(@RequestParam String name) {
 		
-		String Path = "python C:\\Users\\viraj\\Desktop\\Test\\JavaApplication10\\src\\javaapplication10\\abc.py";
+		
 		String ret = "";
-		try {
-            String cc="hello";
-            Process p = Runtime.getRuntime().exec(Path+cc);
-            
-            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            ret = in.readLine();
-        } catch (IOException ex) {
-        	ex.printStackTrace();
-        }
+		
 		return ret;
 	}
 }

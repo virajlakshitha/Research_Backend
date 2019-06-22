@@ -57,8 +57,17 @@ public class PCPartDaoImpl implements PCPartDao{
 
 	@Override
 	public PCPart findByPartById(String id, String category) {
-		// TODO Auto-generated method stub
-		return null;
+
+		try {
+			
+			Query query = new Query();
+			query.addCriteria(Criteria.where("_id").is(id));
+			
+			return mongoTemplate.findOne(query, PCPart.class);
+			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }
