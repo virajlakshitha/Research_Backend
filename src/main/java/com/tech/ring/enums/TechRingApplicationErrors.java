@@ -15,7 +15,9 @@ public enum TechRingApplicationErrors {
 	CAN_NOT_FIND_MATCHING_RESULT("0011","Sorry , We can not find matching result"),
 	PCPART_NOT_CREATED("012","PC Part is not created, Please try again little while"),
 	PCPART_ALLREADY_EXISTS("013","PC Part already exists"),
-	PCPART_NOT_FOUND("014","PC Part Not Found");
+	PCPART_NOT_FOUND("014","PC Part Not Found"),
+	GAME_ALLREADY_EXISTS("015","Game allready exists"),
+	GAME_NOT_FOUND("0016","Game not found");
 	
 	private String statusCode;
 	private String statusMessage;
