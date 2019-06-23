@@ -1,6 +1,7 @@
 package com.tech.ring.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class PCPartServiceImpl implements PCPartService{
 	@Override
 	public HashMap<String, String> createNewRam(PCPartRequest pcpartRequest) {
 		
-		Ram pcpart = pcpartDao.findByRamPartByName(pcpartRequest.getName());
+		List<Ram> pcpart = pcpartDao.findByRamPartByName(pcpartRequest.getName());
 		
 		if(pcpart == null) {
 			Ram newpcpart = new Ram();
@@ -54,20 +55,12 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Ram getRamPartsByName(String name) {
+	public List<Ram> getRamPartsByName(String name) {
 		
-		Ram pcpart = pcpartDao.findByRamPartByName(name);
+		List<Ram> pcpart = pcpartDao.findByRamPartByName(name);
 		
-		if(pcpart != null) {
-			Ram newpcpart = new Ram();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			
-			return newpcpart;
-			
+		if(pcpart != null && !pcpart.isEmpty()) {
+			return pcpart;
 		}
 		else {
 			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
@@ -80,13 +73,7 @@ public class PCPartServiceImpl implements PCPartService{
 		Ram pcpart = pcpartDao.findByRamPartById(id);
 		
 		if(pcpart != null) {
-			Ram newpcpart = new Ram();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
+			return pcpart;
 			
 		}
 		else {
@@ -95,18 +82,11 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Ram findRamVendorPrices(String part_name) {
-		Ram pcpart = pcpartDao.findByRamPartByName(part_name);
+	public List<Ram> findRamVendorPrices(String part_name) {
+		List<Ram> pcpart = pcpartDao.findByRamPartByName(part_name);
 		
-		if(pcpart != null) {
-			Ram newpcpart = new Ram();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
-			
+		if(pcpart != null && !pcpart.isEmpty()) {
+			return pcpart;
 		}
 		else {
 			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
@@ -115,7 +95,7 @@ public class PCPartServiceImpl implements PCPartService{
 
 	@Override
 	public HashMap<String, String> createNewVga(PCPartRequest pcpartRequest) {
-		Vga pcpart = pcpartDao.findByVgaPartByName(pcpartRequest.getName());
+		List<Vga> pcpart = pcpartDao.findByVgaPartByName(pcpartRequest.getName());
 		
 		if(pcpart == null) {
 			Vga newpcpart = new Vga();
@@ -143,18 +123,12 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Vga getVgaPartsByName(String name) {
-		Vga pcpart = pcpartDao.findByVgaPartByName(name);
+	public List<Vga> getVgaPartsByName(String name) {
+		List<Vga> pcpart = pcpartDao.findByVgaPartByName(name);
 		
-		if(pcpart != null) {
-			Vga newpcpart = new Vga();
+		if(pcpart != null && !pcpart.isEmpty()) {
 			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			
-			return newpcpart;
+			return pcpart;
 			
 		}
 		else {
@@ -167,13 +141,7 @@ public class PCPartServiceImpl implements PCPartService{
 		Vga pcpart = pcpartDao.findByVgaPartById(id);
 		
 		if(pcpart != null) {
-			Vga newpcpart = new Vga();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
+			return pcpart;
 			
 		}
 		else {
@@ -182,17 +150,11 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Vga findVgaVendorPrices(String part_name) {
-		Vga pcpart = pcpartDao.findByVgaPartByName(part_name);
+	public List<Vga> findVgaVendorPrices(String part_name) {
+		List<Vga> pcpart = pcpartDao.findByVgaPartByName(part_name);
 		
-		if(pcpart != null) {
-			Vga newpcpart = new Vga();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
+		if(pcpart != null && !pcpart.isEmpty()) {
+			return pcpart;
 			
 		}
 		else {
@@ -202,7 +164,7 @@ public class PCPartServiceImpl implements PCPartService{
 
 	@Override
 	public HashMap<String, String> createNewCpu(PCPartRequest pcpartRequest) {
-		Cpu pcpart = pcpartDao.findByCpuPartByName(pcpartRequest.getName());
+		List<Cpu> pcpart = pcpartDao.findByCpuPartByName(pcpartRequest.getName());
 		
 		if(pcpart == null) {
 			Cpu newpcpart = new Cpu();
@@ -230,18 +192,12 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Cpu getCpuPartsByName(String name) {
-		Cpu pcpart = pcpartDao.findByCpuPartByName(name);
+	public List<Cpu> getCpuPartsByName(String name) {
+		List<Cpu> pcpart = pcpartDao.findByCpuPartByName(name);
 		
-		if(pcpart != null) {
-			Cpu newpcpart = new Cpu();
+		if(pcpart != null && !pcpart.isEmpty()) {
 			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			
-			return newpcpart;
+			return pcpart;
 			
 		}
 		else {
@@ -254,13 +210,7 @@ public class PCPartServiceImpl implements PCPartService{
 		Cpu pcpart = pcpartDao.findByCpuPartById(id);
 		
 		if(pcpart != null) {
-			Cpu newpcpart = new Cpu();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
+			return pcpart;
 			
 		}
 		else {
@@ -269,17 +219,11 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Cpu findCpuVendorPrices(String part_name) {
-		Cpu pcpart = pcpartDao.findByCpuPartByName(part_name);
+	public List<Cpu> findCpuVendorPrices(String part_name) {
+		List<Cpu> pcpart = pcpartDao.findByCpuPartByName(part_name);
 		
-		if(pcpart != null) {
-			Cpu newpcpart = new Cpu();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
+		if(pcpart != null && !pcpart.isEmpty()) {
+			return pcpart;
 			
 		}
 		else {
@@ -289,7 +233,7 @@ public class PCPartServiceImpl implements PCPartService{
 
 	@Override
 	public HashMap<String, String> createNewMotherboard(PCPartRequest pcpartRequest) {
-		Motherboard pcpart = pcpartDao.findByMotherboardPartByName(pcpartRequest.getName());
+		List<Motherboard> pcpart = pcpartDao.findByMotherboardPartByName(pcpartRequest.getName());
 		
 		if(pcpart == null) {
 			Motherboard newpcpart = new Motherboard();
@@ -317,18 +261,12 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Motherboard getMotherboardPartsByName(String name) {
-		Motherboard pcpart = pcpartDao.findByMotherboardPartByName(name);
+	public List<Motherboard> getMotherboardPartsByName(String name) {
+		List<Motherboard> pcpart = pcpartDao.findByMotherboardPartByName(name);
 		
-		if(pcpart != null) {
-			Motherboard newpcpart = new Motherboard();
+		if(pcpart != null && !pcpart.isEmpty()) {
 			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			
-			return newpcpart;
+			return pcpart;
 			
 		}
 		else {
@@ -341,13 +279,7 @@ public class PCPartServiceImpl implements PCPartService{
 		Motherboard pcpart = pcpartDao.findByMotherboardPartById(id);
 		
 		if(pcpart != null) {
-			Motherboard newpcpart = new Motherboard();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
+			return pcpart;
 			
 		}
 		else {
@@ -356,17 +288,11 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Motherboard findMotherboardVendorPrices(String part_name) {
-		Motherboard pcpart = pcpartDao.findByMotherboardPartByName(part_name);
+	public List<Motherboard> findMotherboardVendorPrices(String part_name) {
+		List<Motherboard> pcpart = pcpartDao.findByMotherboardPartByName(part_name);
 		
-		if(pcpart != null) {
-			Motherboard newpcpart = new Motherboard();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
+		if(pcpart != null && !pcpart.isEmpty()) {
+			return pcpart;
 			
 		}
 		else {
@@ -376,7 +302,7 @@ public class PCPartServiceImpl implements PCPartService{
 
 	@Override
 	public HashMap<String, String> createNewHardDisk(PCPartRequest pcpartRequest) {
-		Hard_disk pcpart = pcpartDao.findByHard_diskPartByName(pcpartRequest.getName());
+		List<Hard_disk> pcpart = pcpartDao.findByHard_diskPartByName(pcpartRequest.getName());
 		
 		if(pcpart == null) {
 			Hard_disk newpcpart = new Hard_disk();
@@ -404,18 +330,12 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Hard_disk getHardDiskPartsByName(String name) {
-		Hard_disk pcpart = pcpartDao.findByHard_diskPartByName(name);
+	public List<Hard_disk> getHardDiskPartsByName(String name) {
+		List<Hard_disk> pcpart = pcpartDao.findByHard_diskPartByName(name);
 		
-		if(pcpart != null) {
-			Hard_disk newpcpart = new Hard_disk();
+		if(pcpart != null && !pcpart.isEmpty()) {
 			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			
-			return newpcpart;
+			return pcpart;
 			
 		}
 		else {
@@ -428,13 +348,7 @@ public class PCPartServiceImpl implements PCPartService{
 		Hard_disk pcpart = pcpartDao.findByHard_diskPartById(id);
 		
 		if(pcpart != null) {
-			Hard_disk newpcpart = new Hard_disk();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
+			return pcpart;
 			
 		}
 		else {
@@ -443,21 +357,28 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public Hard_disk findHardDiskVendorPrices(String part_name) {
-		Hard_disk pcpart = pcpartDao.findByHard_diskPartByName(part_name);
+	public List<Hard_disk> findHardDiskVendorPrices(String part_name) {
+		List<Hard_disk> pcpart = pcpartDao.findByHard_diskPartByName(part_name);
 		
-		if(pcpart != null) {
-			Hard_disk newpcpart = new Hard_disk();
-			
-			newpcpart.setId(pcpart.getId());
-			newpcpart.setName(pcpart.getName());
-			newpcpart.setSize(pcpart.getSize());
-			newpcpart.setPrice(pcpart.getPrice());
-			return newpcpart;
+		if(pcpart != null && !pcpart.isEmpty()) {
+			return pcpart;
 			
 		}
 		else {
 			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
+		}
+	}
+
+	@Override
+	public List<Ram> getRamParts() {
+		
+		List<Ram> pcpart1 = pcpartDao.findBygetRamParts();
+		
+		if(pcpart1 != null && !pcpart1.isEmpty()) {
+			return pcpart1;
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.CAN_NOT_FIND_MATCHING_RESULT);	
 		}
 	}
 

@@ -1,5 +1,7 @@
 package com.tech.ring.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -7,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.tech.ring.domain.Cpu;
+import com.tech.ring.domain.Game;
 import com.tech.ring.domain.Hard_disk;
 import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
@@ -31,14 +34,20 @@ public class PCPartDaoImpl implements PCPartDao{
 	
 
 	@Override
-	public Ram findByRamPartByName(String partName) {
+	public List<Ram> findByRamPartByName(String partName) {
 
 		try {
 			
-			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(partName));
+			if(partName.equals("all")) {
+				return mongoTemplate.findAll(Ram.class);
+			}
+			else {
+				Query query = new Query();
+				query.addCriteria(Criteria.where("name").is(partName));
+				
+				return mongoTemplate.find(query, Ram.class);
+			}
 			
-			return mongoTemplate.findOne(query, Ram.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -61,13 +70,13 @@ public class PCPartDaoImpl implements PCPartDao{
 	}
 
 	@Override
-	public Ram findRamVendorPrices(String part_name) {
+	public List<Ram> findRamVendorPrices(String part_name) {
 		try {
 			
 			Query query = new Query();
-			query.addCriteria(Criteria.where("owner").is(part_name));
+			query.addCriteria(Criteria.where("name").is(part_name));
 			
-			return mongoTemplate.findOne(query, Ram.class);
+			return mongoTemplate.find(query, Ram.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -75,13 +84,19 @@ public class PCPartDaoImpl implements PCPartDao{
 	}
 
 	@Override
-	public Vga findByVgaPartByName(String partName) {
+	public List<Vga> findByVgaPartByName(String partName) {
 		try {
 			
-			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(partName));
+			if(partName.equals("all")) {
+				return mongoTemplate.findAll(Vga.class);
+			}
+			else {
+				Query query = new Query();
+				query.addCriteria(Criteria.where("name").is(partName));
+				
+				return mongoTemplate.find(query, Vga.class);
+			}
 			
-			return mongoTemplate.findOne(query, Vga.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -103,13 +118,13 @@ public class PCPartDaoImpl implements PCPartDao{
 	}
 
 	@Override
-	public Vga findVgaVendorPrices(String part_name) {
+	public List<Vga> findVgaVendorPrices(String part_name) {
 		try {
 			
 			Query query = new Query();
 			query.addCriteria(Criteria.where("name").is(part_name));
 			
-			return mongoTemplate.findOne(query, Vga.class);
+			return mongoTemplate.find(query, Vga.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -129,13 +144,19 @@ public class PCPartDaoImpl implements PCPartDao{
 
 
 	@Override
-	public Cpu findByCpuPartByName(String partName) {
+	public List<Cpu> findByCpuPartByName(String partName) {
 		try {
 			
-			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(partName));
+			if(partName.equals("all")) {
+				return mongoTemplate.findAll(Cpu.class);
+			}
+			else {
+				Query query = new Query();
+				query.addCriteria(Criteria.where("name").is(partName));
+				
+				return mongoTemplate.find(query, Cpu.class);
+			}
 			
-			return mongoTemplate.findOne(query, Cpu.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -159,13 +180,13 @@ public class PCPartDaoImpl implements PCPartDao{
 
 
 	@Override
-	public Cpu findCpuVendorPrices(String part_name) {
+	public List<Cpu> findCpuVendorPrices(String part_name) {
 		try {
 			
 			Query query = new Query();
 			query.addCriteria(Criteria.where("name").is(part_name));
 			
-			return mongoTemplate.findOne(query, Cpu.class);
+			return mongoTemplate.find(query, Cpu.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -186,13 +207,19 @@ public class PCPartDaoImpl implements PCPartDao{
 
 
 	@Override
-	public Motherboard findByMotherboardPartByName(String partName) {
+	public List<Motherboard> findByMotherboardPartByName(String partName) {
 		try {
 			
-			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(partName));
+			if(partName.equals("all")) {
+				return mongoTemplate.findAll(Motherboard.class);
+			}
+			else {
+				Query query = new Query();
+				query.addCriteria(Criteria.where("name").is(partName));
+				
+				return mongoTemplate.find(query, Motherboard.class);
+			}
 			
-			return mongoTemplate.findOne(query, Motherboard.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -216,13 +243,13 @@ public class PCPartDaoImpl implements PCPartDao{
 
 
 	@Override
-	public Motherboard findMotherboardVendorPrices(String part_name) {
+	public List<Motherboard> findMotherboardVendorPrices(String part_name) {
 		try {
 			
 			Query query = new Query();
 			query.addCriteria(Criteria.where("name").is(part_name));
 			
-			return mongoTemplate.findOne(query, Motherboard.class);
+			return mongoTemplate.find(query, Motherboard.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -243,13 +270,19 @@ public class PCPartDaoImpl implements PCPartDao{
 
 
 	@Override
-	public Hard_disk findByHard_diskPartByName(String partName) {
+	public List<Hard_disk> findByHard_diskPartByName(String partName) {
 		try {
 			
-			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(partName));
+			if(partName.equals("all")) {
+				return mongoTemplate.findAll(Hard_disk.class);
+			}
+			else {
+				Query query = new Query();
+				query.addCriteria(Criteria.where("name").is(partName));
+				
+				return mongoTemplate.find(query, Hard_disk.class);
+			}
 			
-			return mongoTemplate.findOne(query, Hard_disk.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -273,13 +306,13 @@ public class PCPartDaoImpl implements PCPartDao{
 
 
 	@Override
-	public Hard_disk findHard_diskVendorPrices(String part_name) {
+	public List<Hard_disk> findHard_diskVendorPrices(String part_name) {
 		try {
 			
 			Query query = new Query();
 			query.addCriteria(Criteria.where("name").is(part_name));
 			
-			return mongoTemplate.findOne(query, Hard_disk.class);
+			return mongoTemplate.find(query, Hard_disk.class);
 			
 		} catch (Exception e) {
 			return null;
@@ -294,6 +327,18 @@ public class PCPartDaoImpl implements PCPartDao{
 			return pcpart;
 		} catch (Exception e) {
 			
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<Ram> findBygetRamParts() {
+		try {
+			
+			return mongoTemplate.findAll(Ram.class);
+			
+		} catch (Exception e) {
 			return null;
 		}
 	}

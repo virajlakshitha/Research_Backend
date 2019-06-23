@@ -9,7 +9,7 @@ public class PCPartRequest {
 	
 	private String name;
 	
-	private String category;
+	private String speed;
 	
 	private String size;
 	
@@ -17,7 +17,13 @@ public class PCPartRequest {
 	
 	private double price;
 	
-	private String description;
+	private String type;
+	
+	private String warranty;
+	
+	private String image;
+	
+	private String owner;
 
 	public String getId() {
 		return id;
@@ -36,11 +42,11 @@ public class PCPartRequest {
 	}
 
 	public String getCategory() {
-		return category;
+		return speed;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategory(String speed) {
+		this.speed = speed;
 	}
 
 	public String getSize() {
@@ -68,11 +74,35 @@ public class PCPartRequest {
 	}
 
 	public String getDescription() {
-		return description;
+		return type;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.type = description;
+	}
+	
+	public String getWarranty() {
+		return warranty;
+	}
+
+	public void setWarranty(String warranty) {
+		this.warranty = warranty;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 	
 }
