@@ -26,7 +26,7 @@ public class PCPartController {
 	@RequestMapping(method = RequestMethod.POST , value = "/create")
 	public TechRingResponse createPCPart(@RequestBody PCPartRequest pcpartRequest) {
 		
-		HashMap<String, String> hm = pcpartService.createNewPCPart(pcpartRequest);
+		HashMap<String, String> hm = pcpartService.createNewRam(pcpartRequest);
 		
 		TechRingResponse techRingResponse = new TechRingResponse();
 		techRingResponse.setResponseCode("111");
@@ -35,8 +35,8 @@ public class PCPartController {
 		return techRingResponse;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET , value = "/{category}/byName/{name}")
-	public String getPCPart(@RequestParam String name, String category) {
+	@RequestMapping(method = RequestMethod.GET , value = "/{category}/byName/")
+	public String getPCPart(@RequestParam String category) {
 		
 		String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Python\\Search_products_v1.py";
 		String ret = "";
@@ -58,7 +58,7 @@ public class PCPartController {
 		return null;
 	}
 
-	@RequestMapping(method = RequestMethod.GET , value = "/getVendorPrices/{name}")
+	@RequestMapping(method = RequestMethod.GET , value = "/getVendorPrices/{category}/{name}")
 	public String getVendorPrices(@RequestParam String name) {
 		
 		

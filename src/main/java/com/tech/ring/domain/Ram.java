@@ -3,8 +3,8 @@ package com.tech.ring.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "CPU")
-public class Cpu {
+@Document(collection = "RAM")
+public class Ram {
 	
 	@Id
 	private String id;
@@ -96,4 +96,6 @@ public class Cpu {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+	
+	
 }
