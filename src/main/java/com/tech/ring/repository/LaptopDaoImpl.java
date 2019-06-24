@@ -61,4 +61,18 @@ public class LaptopDaoImpl implements LaptopDao{
 		
 	}
 
+	@Override
+	public Laptop findById(String id) {
+
+		try {
+			
+			Query query = new Query();
+			query.addCriteria(Criteria.where("_id").is(id));
+			return mongoTemplate.findOne(query, Laptop.class);
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
+
 }

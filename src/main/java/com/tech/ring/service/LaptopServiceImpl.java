@@ -75,4 +75,18 @@ public class LaptopServiceImpl implements LaptopService{
 		}
 	}
 
+	@Override
+	public Laptop findById(String id) {
+
+		Laptop laptop = laptopDao.findById(id);
+		
+		if(laptop != null) {
+			
+			return laptop;
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.CAN_NOT_FIND_MATCHING_RESULT);
+		}
+	}
+
 }
