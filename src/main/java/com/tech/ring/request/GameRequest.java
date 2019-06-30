@@ -41,12 +41,12 @@ public class GameRequest {
 		this.ram = ram;
 	}
 
-	public String getGpu() {
+	public String getGraphics() {
 		return graphics;
 	}
 
-	public void setGpu(String gpu) {
-		this.graphics = gpu;
+	public void setGraphics(String graphics) {
+		this.graphics = graphics;
 	}
 
 	public String getStorage() {

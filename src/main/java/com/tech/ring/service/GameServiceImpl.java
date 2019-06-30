@@ -29,7 +29,7 @@ public class GameServiceImpl implements GameService {
 				newGame.setName(gameRequest.getName());
 				newGame.setCpu(gameRequest.getCpu());
 				newGame.setRam(gameRequest.getRam());
-				newGame.setGpu(gameRequest.getGpu());
+				newGame.setGraphics(gameRequest.getGraphics()); 
 				newGame.setStorage(gameRequest.getStorage());
 				newGame.setImageSource(gameRequest.getImageSource());
 				
