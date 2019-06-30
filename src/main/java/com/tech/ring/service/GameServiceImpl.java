@@ -31,6 +31,7 @@ public class GameServiceImpl implements GameService {
 				newGame.setRam(gameRequest.getRam());
 				newGame.setGpu(gameRequest.getGpu());
 				newGame.setStorage(gameRequest.getStorage());
+				newGame.setImageSource(gameRequest.getImageSource());
 				
 				Game result = gameDao.SaveGame(newGame);
 				

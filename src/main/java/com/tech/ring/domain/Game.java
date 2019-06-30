@@ -15,9 +15,11 @@ public class Game {
 	
 	private String ram;
 	
-	private String gpu;
+	private String graphics;
 	
 	private String storage;
+	
+	private String imageSource;
 
 	public String getId() {
 		return id;
@@ -52,11 +54,11 @@ public class Game {
 	}
 
 	public String getGpu() {
-		return gpu;
+		return graphics;
 	}
 
 	public void setGpu(String gpu) {
-		this.gpu = gpu;
+		this.graphics = gpu;
 	}
 
 	public String getStorage() {
@@ -67,6 +69,13 @@ public class Game {
 		this.storage = storage;
 	}
 	
-	
+	public String getImageSource() {
+		return imageSource;
+	}
+
+	public void setImageSource(String imageSource) {
+		this.imageSource = imageSource;
+	}
+
 
 }
