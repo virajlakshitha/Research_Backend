@@ -10,4 +10,5 @@ public interface LaptopService {
 	
 	public HashMap<String, String> creteNewLaptop(LaptopRequest laptopRequest);
 	public List<Laptop> getLaptopByBrandWise(String key);
+	public Laptop findById(String id);
 }

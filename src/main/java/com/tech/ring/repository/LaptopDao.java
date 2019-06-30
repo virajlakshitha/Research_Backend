@@ -9,4 +9,5 @@ public interface LaptopDao{
 	public Laptop findByLapName(String lapName);
 	public Laptop saveLaptop(Laptop laptop);
 	public List<Laptop> findLaptop(String key);
+	public Laptop findById(String id);
 }

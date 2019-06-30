@@ -87,8 +87,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         .permitAll()
                      .antMatchers("/api-techRing/games/**")
                         .permitAll()
-                     .antMatchers("/api-techRing/pcparts/**")
+                    .antMatchers("/api-techRing/pcparts/**")
                         .permitAll() 
+                    .antMatchers("/api-techRing/build_for_price/**")
+                        .permitAll()
                     .anyRequest()
                         .authenticated();
 

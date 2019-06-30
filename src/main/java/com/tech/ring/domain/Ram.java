@@ -1,24 +1,24 @@
-package com.tech.ring.request;
+package com.tech.ring.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class PCPartRequest {
+@Document(collection = "RAM")
+public class Ram {
 	
+	@Id
 	private String id;
-	
+
 	private String name;
-	
+
 	private String speed;
-	
+
 	private String size;
-	
-	private String brand;
-	
-	private double price;
-	
+
 	private String type;
-	
+
+	private double price;
+
 	private String warranty;
 	
 	private String image;
@@ -41,11 +41,11 @@ public class PCPartRequest {
 		this.name = name;
 	}
 
-	public String getCategory() {
+	public String getSpeed() {
 		return speed;
 	}
 
-	public void setCategory(String speed) {
+	public void setSpeed(String speed) {
 		this.speed = speed;
 	}
 
@@ -57,12 +57,12 @@ public class PCPartRequest {
 		this.size = size;
 	}
 
-	public String getBrand() {
-		return brand;
+	public String getType() {
+		return type;
 	}
 
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public double getPrice() {
@@ -73,14 +73,6 @@ public class PCPartRequest {
 		this.price = price;
 	}
 
-	public String getDescription() {
-		return type;
-	}
-
-	public void setDescription(String description) {
-		this.type = description;
-	}
-	
 	public String getWarranty() {
 		return warranty;
 	}
@@ -104,5 +96,6 @@ public class PCPartRequest {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+	
 	
 }
