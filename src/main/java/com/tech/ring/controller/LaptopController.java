@@ -53,4 +53,16 @@ public class LaptopController {
 		
 		return techRingResponse;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET , value = "/findById/{id}")
+	public TechRingResponse findLaptopById(@PathVariable("id") String id) {
+		
+		Laptop laptop = laptopService.findById(id);
+		
+		TechRingResponse techRingResponse = new TechRingResponse();
+		techRingResponse.setResponseCode("111");
+		techRingResponse.setResponseObject(laptop);
+		
+		return techRingResponse;
+	}
 }

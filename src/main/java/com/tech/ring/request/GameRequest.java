@@ -11,9 +11,11 @@ public class GameRequest {
 	
 	private String ram;
 	
-	private String gpu;
+	private String graphics;
 	
 	private String storage;
+	
+	private String imageSource;
 
 	public String getName() {
 		return name;
@@ -39,12 +41,12 @@ public class GameRequest {
 		this.ram = ram;
 	}
 
-	public String getGpu() {
-		return gpu;
+	public String getGraphics() {
+		return graphics;
 	}
 
-	public void setGpu(String gpu) {
-		this.gpu = gpu;
+	public void setGraphics(String graphics) {
+		this.graphics = graphics;
 	}
 
 	public String getStorage() {
@@ -53,6 +55,14 @@ public class GameRequest {
 
 	public void setStorage(String storage) {
 		this.storage = storage;
+	}
+	
+	public String getImageSource() {
+		return imageSource;
+	}
+
+	public void setImageSource(String imageSource) {
+		this.imageSource = imageSource;
 	}
 	
 	
