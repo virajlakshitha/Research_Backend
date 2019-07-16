@@ -26,22 +26,24 @@ public class AppUserDetailsService implements UserDetailsService{
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		User user = userDao.findByuserName(username);
-		if(user == null) {
-			throw new TechRingException(TechRingApplicationErrors.USER_NAME_NOT_FOUND);
-		}
-		
-		return UserPrincipal.create(user);
+//		User user = userDao.findByuserName(username);
+//		if(user == null) {
+//			throw new TechRingException(TechRingApplicationErrors.USER_NAME_NOT_FOUND);
+//		}
+//		
+//		return UserPrincipal.create(user);
+		return null;
 	}
 		
 	@Transactional
 	public UserDetails loadUserById(String id) {
-		Optional<User> user = userDao.findById(id);
-		
-		if(!user.isPresent()) {
-			throw new TechRingException(TechRingApplicationErrors.USER_NAME_NOT_FOUND);
-		}
-		
-		return UserPrincipal.create(user.get());
+//		User user = userDao.findUserById(id);
+//		
+//		if(!user.isPresent()) {
+//			throw new TechRingException(TechRingApplicationErrors.USER_NAME_NOT_FOUND);
+//		}
+//		
+//		return UserPrincipal.create(user.get());
+		return null;
 	}
 }
