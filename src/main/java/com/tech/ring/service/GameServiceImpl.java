@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tech.ring.domain.Game;
+import com.tech.ring.domain.Laptop;
 import com.tech.ring.enums.TechRingApplicationErrors;
 import com.tech.ring.exception.TechRingException;
 import com.tech.ring.repository.GameDao;
@@ -64,6 +65,22 @@ public class GameServiceImpl implements GameService {
 		else {
 			throw new TechRingException(TechRingApplicationErrors.GAME_NOT_FOUND);
 		}
+	}
+
+	@Override
+	public Game getGameByName(String key) {
+		
+		Game game = gameDao.findByGameName(key);
+		
+		if(game != null) {
+			return game;
+		}
+		else {
+			Game game1 = new Game();
+			game1.setName("Not_found_game");
+			return game1;
+		}
+		
 	}
 
 }
