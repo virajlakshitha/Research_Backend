@@ -10,4 +10,5 @@ public interface GameService {
 
 	public HashMap<String, String> createNewGame(GameRequest gameRequest);
 	public List<Game> getAllGames();
+	public Game getGameByName(String key);
 }
