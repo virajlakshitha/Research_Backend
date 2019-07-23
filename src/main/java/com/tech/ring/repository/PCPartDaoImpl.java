@@ -35,7 +35,6 @@ public class PCPartDaoImpl implements PCPartDao{
 
 	@Override
 	public List<Ram> findByRamPartByName(String partName) {
-
 		try {
 			
 			if(partName.equals("all")) {
@@ -45,7 +44,8 @@ public class PCPartDaoImpl implements PCPartDao{
 				Query query = new Query();
 				query.addCriteria(Criteria.where("name").is(partName));
 				
-				return mongoTemplate.find(query, Ram.class);
+				List<Ram> rams = mongoTemplate.find(query, Ram.class);
+				return rams;
 			}
 			
 			

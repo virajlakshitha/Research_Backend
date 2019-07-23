@@ -151,6 +151,7 @@ public class PCPartController {
 		List<Cpu> cpu = null;
 		List<Motherboard> motherboard = null;
 		List<Hard_disk> hard_disk = null;
+		
 		TechRingResponse techRingResponse = new TechRingResponse();
 		
 		if(category.equals("ram")) {
@@ -181,4 +182,6 @@ public class PCPartController {
 		
 		return techRingResponse;
 	}
+	
+	
 }

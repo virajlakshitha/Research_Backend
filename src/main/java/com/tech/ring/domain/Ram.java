@@ -17,7 +17,7 @@ public class Ram {
 
 	private String type;
 
-	private double price;
+	private String price;
 
 	private String warranty;
 	
@@ -65,11 +65,11 @@ public class Ram {
 		this.type = type;
 	}
 
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
