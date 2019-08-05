@@ -19,6 +19,7 @@ import com.tech.ring.domain.Hard_disk;
 import com.tech.ring.domain.Laptop;
 import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
+import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
 import com.tech.ring.request.PCPartRequest;
 import com.tech.ring.response.TechRingResponse;
@@ -183,5 +184,25 @@ public class PCPartController {
 		return techRingResponse;
 	}
 	
+	@RequestMapping(method = RequestMethod.GET , value = "/vendors/{category}/{pro_name}")
+	public TechRingResponse getVendorDetails(@PathVariable("category") String category, @PathVariable("pro_name") String pro_name) {
+		TechRingResponse techRingResponse = new TechRingResponse();
+		List<User> users = pcpartService.getVendorsForProduct(category, pro_name);
+		
+		techRingResponse.setResponseCode("111");
+		techRingResponse.setResponseObject(users);
+		
+		return techRingResponse;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST , value = "/notify/{user_id}/{product}/{price}")
+	public TechRingResponse pushNotification(@PathVariable("user_id") String user_id, @PathVariable("product") String product, @PathVariable("price") String price) {
+		TechRingResponse techRingResponse = new TechRingResponse();
+		
+		pcpartService.pushNotification(user_id, product, price);
+		techRingResponse.setResponseCode("111");
+		
+		return techRingResponse;
+	}
 	
 }

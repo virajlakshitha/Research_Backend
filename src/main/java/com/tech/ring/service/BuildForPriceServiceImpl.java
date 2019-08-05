@@ -35,8 +35,8 @@ public class BuildForPriceServiceImpl implements BuildForPriceService {
 	}
 
 	@Override
-	public Ram getRamUnderBudget(String id, String min, String max) {
-		Ram ram = buildForPriceDao.findRam(id, min, max);
+	public Ram getRamUnderBudget(String min, String max) {
+		Ram ram = buildForPriceDao.findRam(min, max);
 		
 		if(ram != null) {
 			return ram;
@@ -48,8 +48,8 @@ public class BuildForPriceServiceImpl implements BuildForPriceService {
 	}
 
 	@Override
-	public Vga getVgaUnderBudget(String id, String min, String max) {
-		Vga vga = buildForPriceDao.findVga(id, min, max);
+	public Vga getVgaUnderBudget(String min, String max) {
+		Vga vga = buildForPriceDao.findVga(min, max);
 		
 		if(vga != null) {
 			return vga;
@@ -61,8 +61,8 @@ public class BuildForPriceServiceImpl implements BuildForPriceService {
 	}
 
 	@Override
-	public Cpu getCpuUnderBudget(String id, String min, String max) {
-		Cpu cpu = buildForPriceDao.findCpu(id, min, max);
+	public Cpu getCpuUnderBudget(String min, String max) {
+		Cpu cpu = buildForPriceDao.findCpu(min, max);
 		
 		if(cpu != null) {
 			return cpu;
@@ -74,8 +74,8 @@ public class BuildForPriceServiceImpl implements BuildForPriceService {
 	}
 
 	@Override
-	public Motherboard getMotherboardUnderBudget(String id, String min, String max) {
-		Motherboard Motherboard = buildForPriceDao.findMotherboard(id, min, max);
+	public Motherboard getMotherboardUnderBudget(String min, String max) {
+		Motherboard Motherboard = buildForPriceDao.findMotherboard(min, max);
 		
 		if(Motherboard != null) {
 			return Motherboard;
@@ -87,8 +87,8 @@ public class BuildForPriceServiceImpl implements BuildForPriceService {
 	}
 
 	@Override
-	public Hard_disk getHardDiskUnderBudget(String id, String min, String max) {
-		Hard_disk hard_disk = buildForPriceDao.findHard_disk(id, min, max);
+	public Hard_disk getHardDiskUnderBudget(String min, String max) {
+		Hard_disk hard_disk = buildForPriceDao.findHard_disk(min, max);
 		
 		if(hard_disk != null) {
 			return hard_disk;

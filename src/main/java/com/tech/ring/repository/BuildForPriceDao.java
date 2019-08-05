@@ -13,9 +13,9 @@ public interface BuildForPriceDao {
 	
 	public List<Ram> findAll();
 
-	public Ram findRam(String id, String min, String max);
-	public Vga findVga(String id, String min, String max);
-	public Cpu findCpu(String id, String min, String max);
-	public Motherboard findMotherboard(String id, String min, String max);
-	public Hard_disk findHard_disk(String id, String min, String max);
+	public Ram findRam(String min, String max);
+	public Vga findVga(String min, String max);
+	public Cpu findCpu(String min, String max);
+	public Motherboard findMotherboard(String min, String max);
+	public Hard_disk findHard_disk(String min, String max);
 }

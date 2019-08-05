@@ -33,7 +33,7 @@ public class BuildForPriceDaoImpl implements BuildForPriceDao{
 	}
 
 	@Override
-	public Ram findRam(String id, String min, String max) {
+	public Ram findRam(String min, String max) {
 		try {
 			double range = ((Integer.parseInt(max)-Integer.parseInt(min))*10/100);
 			Query query = new Query();
@@ -47,7 +47,7 @@ public class BuildForPriceDaoImpl implements BuildForPriceDao{
 	}
 
 	@Override
-	public Vga findVga(String id, String min, String max) {
+	public Vga findVga(String min, String max) {
 		try {
 			double range = ((Integer.parseInt(max)-Integer.parseInt(min))*20/100);
 			Query query = new Query();
@@ -61,7 +61,7 @@ public class BuildForPriceDaoImpl implements BuildForPriceDao{
 	}
 
 	@Override
-	public Cpu findCpu(String id, String min, String max) {
+	public Cpu findCpu(String min, String max) {
 		try {
 			double range = ((Integer.parseInt(max)-Integer.parseInt(min))*20/100);
 			Query query = new Query();
@@ -75,7 +75,7 @@ public class BuildForPriceDaoImpl implements BuildForPriceDao{
 	}
 
 	@Override
-	public Motherboard findMotherboard(String id, String min, String max) {
+	public Motherboard findMotherboard(String min, String max) {
 		try {
 			double range = ((Integer.parseInt(max)-Integer.parseInt(min))*20/100);
 			Query query = new Query();
@@ -89,7 +89,7 @@ public class BuildForPriceDaoImpl implements BuildForPriceDao{
 	}
 
 	@Override
-	public Hard_disk findHard_disk(String id, String min, String max) {
+	public Hard_disk findHard_disk(String min, String max) {
 		try {
 			double range = ((Integer.parseInt(max)-Integer.parseInt(min))*20/100);
 			Query query = new Query();

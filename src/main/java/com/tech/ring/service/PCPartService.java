@@ -7,6 +7,7 @@ import com.tech.ring.domain.Cpu;
 import com.tech.ring.domain.Hard_disk;
 import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
+import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
 import com.tech.ring.request.PCPartRequest;
 
@@ -39,4 +40,7 @@ public interface PCPartService {
 	public Hard_disk getHardDiskPartsById(String id);
 	public List<Hard_disk> findHardDiskVendorPrices(String part_name);
 	
+	public List<User> getVendorsForProduct(String category, String pro_name);
+	
+	public void pushNotification(String user_id, String product, String price);
 }

@@ -12,9 +12,9 @@ public interface BuildForPriceService {
 	
 	public List<Ram> getAll();
 
-	public Ram getRamUnderBudget(String id,String min,String max);
-	public Vga getVgaUnderBudget(String id,String min,String max);
-	public Cpu getCpuUnderBudget(String id,String min,String max);
-	public Motherboard getMotherboardUnderBudget(String id,String min,String max);
-	public Hard_disk getHardDiskUnderBudget(String id,String min,String max);
+	public Ram getRamUnderBudget(String min,String max);
+	public Vga getVgaUnderBudget(String min,String max);
+	public Cpu getCpuUnderBudget(String min,String max);
+	public Motherboard getMotherboardUnderBudget(String min,String max);
+	public Hard_disk getHardDiskUnderBudget(String min,String max);
 }

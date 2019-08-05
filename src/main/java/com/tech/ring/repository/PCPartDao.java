@@ -6,6 +6,7 @@ import com.tech.ring.domain.Cpu;
 import com.tech.ring.domain.Hard_disk;
 import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
+import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
 
 public interface PCPartDao {
@@ -36,4 +37,8 @@ public interface PCPartDao {
 	public Hard_disk findByHard_diskPartById(String id);
 	public List<Hard_disk> findHard_diskVendorPrices(String part_name);
 	public Hard_disk saveHard_disk(Hard_disk pcpart);
+	
+	public List<User> getVendorsForProduct(String category, String pro_name);
+	
+	public void pushNotification(String user_id, String product, String price);
 }

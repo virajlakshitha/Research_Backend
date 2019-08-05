@@ -10,6 +10,7 @@ import com.tech.ring.domain.Cpu;
 import com.tech.ring.domain.Hard_disk;
 import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
+import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
 import com.tech.ring.enums.TechRingApplicationErrors;
 import com.tech.ring.exception.TechRingException;
@@ -380,6 +381,25 @@ public class PCPartServiceImpl implements PCPartService{
 		else {
 			throw new TechRingException(TechRingApplicationErrors.CAN_NOT_FIND_MATCHING_RESULT);	
 		}
+	}
+
+	@Override
+	public List<User> getVendorsForProduct(String category, String pro_name) {
+		
+		List<User> users = pcpartDao.getVendorsForProduct(category, pro_name);
+		
+		if(users != null) {
+			return users;
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.CAN_NOT_FIND_MATCHING_RESULT);	
+		}
+	}
+
+	@Override
+	public void pushNotification(String user_id, String product, String price) {
+		pcpartDao.pushNotification(user_id, product, price);
+		
 	}
 
 

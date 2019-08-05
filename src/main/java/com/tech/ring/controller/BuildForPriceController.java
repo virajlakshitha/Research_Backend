@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +32,8 @@ public class BuildForPriceController {
 	@Autowired
 	BuildForPriceService buildForPriceService;
 	
-	@RequestMapping(method = RequestMethod.GET , value = "change/{category}/{id}/{min}/{max}")
-	public TechRingResponse changePCPart(@PathVariable("category") String category, @PathVariable("id") String id, @PathVariable("min") String min, @PathVariable("max") String max) {
+	@RequestMapping(method = RequestMethod.GET , value = "change/{category}/{min}/{max}")
+	public TechRingResponse changePCPart(@PathVariable("category") String category, @PathVariable("min") String min, @PathVariable("max") String max) {
 		
 //		String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Python\\Search_products_v1.py";
 //		String ret = "";
@@ -53,27 +54,27 @@ public class BuildForPriceController {
 		TechRingResponse techRingResponse = new TechRingResponse();
 		
 		if(category.equals("ram")) {
-			ram = buildForPriceService.getRamUnderBudget(id,min,max);
+			ram = buildForPriceService.getRamUnderBudget(min,max);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(ram);
 		}
 		else if(category.equals("vga")) {
-			vga = buildForPriceService.getVgaUnderBudget(id,min,max);
+			vga = buildForPriceService.getVgaUnderBudget(min,max);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(vga);
 		}
 		else if(category.equals("cpu")) {
-			cpu = buildForPriceService.getCpuUnderBudget(id,min,max);
+			cpu = buildForPriceService.getCpuUnderBudget(min,max);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(cpu);
 		}
 		else if(category.equals("motherboard")) {
-			motherboard = buildForPriceService.getMotherboardUnderBudget(id,min,max);
+			motherboard = buildForPriceService.getMotherboardUnderBudget(min,max);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(motherboard);
 		}
 		else if(category.equals("hard_disk")) {
-			hard_disk = buildForPriceService.getHardDiskUnderBudget(id,min,max);
+			hard_disk = buildForPriceService.getHardDiskUnderBudget(min,max);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(hard_disk);
 		}
@@ -87,6 +88,16 @@ public class BuildForPriceController {
 		
 		
 		return null;
+	}
+	
+	@Scheduled(initialDelay = 1000, fixedRate = 86400000)
+	public void ram_scrape() {
+	    try {
+	    	String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Python\\Search_products_v1.py";
+	    	Process p = Runtime.getRuntime().exec(Path);
+	    } catch(Exception e) {
+	    	e.printStackTrace();
+	    }
 	}
 
 }
