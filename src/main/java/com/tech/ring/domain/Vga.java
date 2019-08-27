@@ -24,6 +24,12 @@ public class Vga {
 	private String image;
 	
 	private String owner;
+	
+	private String chipset;
+	
+	private String capacity;
+	
+	private String points;
 
 	public String getId() {
 		return id;
@@ -95,6 +101,30 @@ public class Vga {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public String getChipset() {
+		return chipset;
+	}
+
+	public void setChipset(String chipset) {
+		this.chipset = chipset;
+	}
+
+	public String getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
+	}
+	
+	public String getPoints() {
+		return points;
+	}
+
+	public void setPoints(String points) {
+		this.points = points;
 	}
 
 }

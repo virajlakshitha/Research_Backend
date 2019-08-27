@@ -15,7 +15,7 @@ public class Cpu {
 
 	private String size;
 
-	private String type;
+	private String proccessor_type;
 
 	private String price;
 
@@ -24,6 +24,12 @@ public class Cpu {
 	private String image;
 	
 	private String owner;
+	
+	private String model;
+	
+	private String socket;	
+	
+	private String points;
 
 	public String getId() {
 		return id;
@@ -57,14 +63,6 @@ public class Cpu {
 		this.size = size;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public String getPrice() {
 		return price;
 	}
@@ -95,5 +93,37 @@ public class Cpu {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public String getProccessor_type() {
+		return proccessor_type;
+	}
+
+	public void setProccessor_type(String proccessor_type) {
+		this.proccessor_type = proccessor_type;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public String getSocket() {
+		return socket;
+	}
+
+	public void setSocket(String socket) {
+		this.socket = socket;
+	}
+
+	public String getPoints() {
+		return points;
+	}
+
+	public void setPoints(String points) {
+		this.points = points;
 	}
 }

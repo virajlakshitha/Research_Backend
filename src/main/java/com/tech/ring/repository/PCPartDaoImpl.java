@@ -15,6 +15,8 @@ import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
 import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
+import com.tech.ring.request.NotificationRequest;
+import com.tech.ring.domain.Notification;
 
 @Repository
 public class PCPartDaoImpl implements PCPartDao{
@@ -28,7 +30,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			mongoTemplate.save(pcpart);
 			return pcpart;
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -384,9 +386,33 @@ public class PCPartDaoImpl implements PCPartDao{
 
 
 	@Override
-	public void pushNotification(String user_id, String product, String price) {
-		// TODO Auto-generated method stub
+	public Notification pushNotification(Notification notification) {
+		try {
+			mongoTemplate.save(notification);
+			return notification;
+		} catch (Exception e) {
+			
+			return null;
+		}
 		
+	}
+
+
+	@Override
+	public Notification checkNotification(String user_id, String product) {
+
+		try {
+			Query query = new Query();
+			Query query_user = new Query();
+			query_user.addCriteria(Criteria.where("ObjectId").is(user_id));
+			User user = (User) mongoTemplate.find(query_user, User.class);
+			
+			query.addCriteria(Criteria.where("email").is(user.getEmail()).andOperator(Criteria.where("product").is(product)));
+			Notification result = mongoTemplate.findOne(query, Notification.class);
+			return result;
+		} catch(Exception e) {
+			return null;
+		}
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
 import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
+import com.tech.ring.request.NotificationRequest;
 import com.tech.ring.request.PCPartRequest;
 import com.tech.ring.response.TechRingResponse;
 import com.tech.ring.service.PCPartService;
@@ -44,19 +46,27 @@ public class PCPartController {
 		return techRingResponse;
 	}
 	
+	@RequestMapping(method = RequestMethod.GET , value = "/upload/{path}")
+	public TechRingResponse uploadPCPart(@PathVariable String path) {
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		boolean res = true;
+		TechRingResponse techRingResponse = new TechRingResponse();
+		techRingResponse.setResponseCode("111");
+		techRingResponse.setResponseObject(res);
+		
+		return techRingResponse;
+	}
+	
 	@RequestMapping(method = RequestMethod.GET , value = "/{category}/byName/{name}")
 	public TechRingResponse getPCPart(@PathVariable("category") String category, @PathVariable("name") String name) {
 		
-//		String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Python\\Search_products_v1.py";
-//		String ret = "";
-//		try {
-//            Process p = Runtime.getRuntime().exec(Path);
-//            
-//            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//            ret = in.readLine();
-//        } catch (IOException ex) {
-//        	ex.printStackTrace();
-//        }
 		List<Ram> ram = null;
 		List<Vga> vga = null;
 		List<Cpu> cpu = null;
@@ -195,14 +205,14 @@ public class PCPartController {
 		return techRingResponse;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST , value = "/notify/{user_id}/{product}/{price}")
-	public TechRingResponse pushNotification(@PathVariable("user_id") String user_id, @PathVariable("product") String product, @PathVariable("price") String price) {
+	@RequestMapping(method = RequestMethod.POST , value = "/notify")
+	public TechRingResponse pushNotification(@RequestBody NotificationRequest notificationRequest) {
 		TechRingResponse techRingResponse = new TechRingResponse();
 		
-		pcpartService.pushNotification(user_id, product, price);
+		HashMap<String, String> hm = pcpartService.pushNotification(notificationRequest);
 		techRingResponse.setResponseCode("111");
 		
 		return techRingResponse;
-	}
+	} 
 	
 }

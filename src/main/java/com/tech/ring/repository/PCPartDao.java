@@ -8,6 +8,7 @@ import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
 import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
+import com.tech.ring.domain.Notification;
 
 public interface PCPartDao {
 	
@@ -40,5 +41,6 @@ public interface PCPartDao {
 	
 	public List<User> getVendorsForProduct(String category, String pro_name);
 	
-	public void pushNotification(String user_id, String product, String price);
+	public Notification checkNotification(String user_id, String product);
+	public Notification pushNotification(Notification notification);
 }

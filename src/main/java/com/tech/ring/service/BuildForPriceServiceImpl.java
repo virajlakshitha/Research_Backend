@@ -1,10 +1,12 @@
 package com.tech.ring.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tech.ring.domain.BuildSequence;
 import com.tech.ring.domain.Cpu;
 import com.tech.ring.domain.Game;
 import com.tech.ring.domain.Hard_disk;
@@ -30,72 +32,111 @@ public class BuildForPriceServiceImpl implements BuildForPriceService {
 		}
 		
 		else {
-			throw new TechRingException(TechRingApplicationErrors.GAME_NOT_FOUND);
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
 		}
 	}
 
 	@Override
-	public Ram getRamUnderBudget(String min, String max) {
-		Ram ram = buildForPriceDao.findRam(min, max);
+	public List<Ram> getRamUnderBudget(Double min, Double max) {
+		List<Ram> ram = buildForPriceDao.findRam(min, max);
 		
 		if(ram != null) {
 			return ram;
 		}
 		
 		else {
-			throw new TechRingException(TechRingApplicationErrors.GAME_NOT_FOUND);
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
 		}
 	}
 
 	@Override
-	public Vga getVgaUnderBudget(String min, String max) {
-		Vga vga = buildForPriceDao.findVga(min, max);
+	public List<Vga> getVgaUnderBudget(Double min, Double max) {
+		List<Vga> vga = buildForPriceDao.findVga(min, max);
 		
 		if(vga != null) {
 			return vga;
 		}
 		
 		else {
-			throw new TechRingException(TechRingApplicationErrors.GAME_NOT_FOUND);
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
 		}
 	}
 
 	@Override
-	public Cpu getCpuUnderBudget(String min, String max) {
-		Cpu cpu = buildForPriceDao.findCpu(min, max);
+	public List<Cpu> getCpuUnderBudget(Double min, Double max) {
+		List<Cpu> cpu = buildForPriceDao.findCpu(min, max);
 		
 		if(cpu != null) {
 			return cpu;
 		}
 		
 		else {
-			throw new TechRingException(TechRingApplicationErrors.GAME_NOT_FOUND);
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
 		}
 	}
 
 	@Override
-	public Motherboard getMotherboardUnderBudget(String min, String max) {
-		Motherboard Motherboard = buildForPriceDao.findMotherboard(min, max);
+	public List<Motherboard> getMotherboardUnderBudget(Double min, Double max) {
+		List<Motherboard> Motherboard = buildForPriceDao.findMotherboard(min, max);
 		
 		if(Motherboard != null) {
 			return Motherboard;
 		}
 		
 		else {
-			throw new TechRingException(TechRingApplicationErrors.GAME_NOT_FOUND);
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
 		}
 	}
 
 	@Override
-	public Hard_disk getHardDiskUnderBudget(String min, String max) {
-		Hard_disk hard_disk = buildForPriceDao.findHard_disk(min, max);
+	public List<Hard_disk> getHardDiskUnderBudget(Double min, Double max) {
+		List<Hard_disk> hard_disk = buildForPriceDao.findHard_disk(min, max);
 		
 		if(hard_disk != null) {
 			return hard_disk;
 		}
 		
 		else {
-			throw new TechRingException(TechRingApplicationErrors.GAME_NOT_FOUND);
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
+		}
+	}
+
+	@Override
+	public List<BuildSequence> budget_plan(Double min, Double max) {
+		List<BuildSequence> list = buildForPriceDao.budget_plan(min, max);
+		
+		if(list != null) {
+			return list;
+		}
+		
+		else {
+			throw new TechRingException(TechRingApplicationErrors.BUILD_SEQUENCE_NOT_FOUND);
+		}
+	}
+	
+	@Override
+	public List<BuildSequence> budget_plan_price(String category, Double min, Double max) {
+		List<BuildSequence> list = buildForPriceDao.budget_plan(min, max);
+		
+		if(list != null) {
+			return list;
+		}
+		
+		else {
+			throw new TechRingException(TechRingApplicationErrors.BUILD_SEQUENCE_NOT_FOUND);
+		}
+	}
+
+	@Override
+	public HashMap<String, Double> getMaxMinBudget() {
+		HashMap<String, Double> list = buildForPriceDao.getMaxMinBudget();
+		
+		if(list != null) {
+			return list;
+		}
+		
+		else {
+			throw new TechRingException(TechRingApplicationErrors.CAN_NOT_FIND_MATCHING_RESULT);
 		}
 	}
 

@@ -9,6 +9,7 @@ import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
 import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
+import com.tech.ring.request.NotificationRequest;
 import com.tech.ring.request.PCPartRequest;
 
 public interface PCPartService {
@@ -42,5 +43,5 @@ public interface PCPartService {
 	
 	public List<User> getVendorsForProduct(String category, String pro_name);
 	
-	public void pushNotification(String user_id, String product, String price);
+	public HashMap<String, String> pushNotification(NotificationRequest notificationRequest);
 }

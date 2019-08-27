@@ -12,9 +12,11 @@ import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
 import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
+import com.tech.ring.domain.Notification;
 import com.tech.ring.enums.TechRingApplicationErrors;
 import com.tech.ring.exception.TechRingException;
 import com.tech.ring.repository.PCPartDao;
+import com.tech.ring.request.NotificationRequest;
 import com.tech.ring.request.PCPartRequest;
 
 @Service
@@ -26,15 +28,14 @@ public class PCPartServiceImpl implements PCPartService{
 
 	@Override
 	public HashMap<String, String> createNewRam(PCPartRequest pcpartRequest) {
-		
 		List<Ram> pcpart = pcpartDao.findByRamPartByName(pcpartRequest.getName());
-		
-		if(pcpart == null) {
+		System.out.println(pcpart);
+		if(pcpart == null || pcpart.isEmpty()) {
 			Ram newpcpart = new Ram();
 			
 			newpcpart.setName(pcpartRequest.getName());
-			newpcpart.setSize(pcpartRequest.getSize());
-			newpcpart.setPrice(pcpartRequest.getPrice());
+//			newpcpart.setSize(pcpartRequest.getSize());
+//			newpcpart.setPrice(pcpartRequest.getPrice());
 			
 			Ram pcpartResult = pcpartDao.saveRam(newpcpart);
 			
@@ -98,7 +99,7 @@ public class PCPartServiceImpl implements PCPartService{
 	public HashMap<String, String> createNewVga(PCPartRequest pcpartRequest) {
 		List<Vga> pcpart = pcpartDao.findByVgaPartByName(pcpartRequest.getName());
 		
-		if(pcpart == null) {
+		if(pcpart == null || pcpart.isEmpty()) {
 			Vga newpcpart = new Vga();
 			
 			newpcpart.setName(pcpartRequest.getName());
@@ -167,7 +168,7 @@ public class PCPartServiceImpl implements PCPartService{
 	public HashMap<String, String> createNewCpu(PCPartRequest pcpartRequest) {
 		List<Cpu> pcpart = pcpartDao.findByCpuPartByName(pcpartRequest.getName());
 		
-		if(pcpart == null) {
+		if(pcpart == null || pcpart.isEmpty()) {
 			Cpu newpcpart = new Cpu();
 			
 			newpcpart.setName(pcpartRequest.getName());
@@ -236,7 +237,7 @@ public class PCPartServiceImpl implements PCPartService{
 	public HashMap<String, String> createNewMotherboard(PCPartRequest pcpartRequest) {
 		List<Motherboard> pcpart = pcpartDao.findByMotherboardPartByName(pcpartRequest.getName());
 		
-		if(pcpart == null) {
+		if(pcpart == null || pcpart.isEmpty()) {
 			Motherboard newpcpart = new Motherboard();
 			
 			newpcpart.setName(pcpartRequest.getName());
@@ -305,7 +306,7 @@ public class PCPartServiceImpl implements PCPartService{
 	public HashMap<String, String> createNewHardDisk(PCPartRequest pcpartRequest) {
 		List<Hard_disk> pcpart = pcpartDao.findByHard_diskPartByName(pcpartRequest.getName());
 		
-		if(pcpart == null) {
+		if(pcpart == null || pcpart.isEmpty()) {
 			Hard_disk newpcpart = new Hard_disk();
 			
 			newpcpart.setName(pcpartRequest.getName());
@@ -388,7 +389,7 @@ public class PCPartServiceImpl implements PCPartService{
 		
 		List<User> users = pcpartDao.getVendorsForProduct(category, pro_name);
 		
-		if(users != null) {
+		if(users != null && users.isEmpty() ) {
 			return users;
 		}
 		else {
@@ -397,8 +398,31 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public void pushNotification(String user_id, String product, String price) {
-		pcpartDao.pushNotification(user_id, product, price);
+	public HashMap<String, String> pushNotification(NotificationRequest notificationRequest) {
+		Notification res = pcpartDao.checkNotification(notificationRequest.getId(), notificationRequest.getProduct());
+		
+		if(res == null) {
+			Notification newNotify = new Notification();
+			
+			newNotify.setEmail(res.getEmail());
+			newNotify.setProduct(res.getProduct());
+			
+			Notification notifyResult = pcpartDao.pushNotification(newNotify);
+			
+			if(notifyResult != null) {
+				
+				HashMap<String, String> hm = new HashMap<>();
+				
+				hm.put("message", "Done");
+				return hm;
+			}
+			else {
+				throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_CREATED);
+			}
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.PCPART_ALLREADY_EXISTS);
+		}
 		
 	}
 
