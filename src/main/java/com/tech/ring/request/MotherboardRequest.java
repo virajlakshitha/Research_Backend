@@ -1,17 +1,13 @@
-package com.tech.ring.domain;
+package com.tech.ring.request;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Document(collection = "Hard_Disk")
-public class Hard_disk {
-	
-	@Id
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class MotherboardRequest {
+
 	private String id;
 
 	private String name;
-
-	private String speed;
 
 	private String size;
 
@@ -25,9 +21,11 @@ public class Hard_disk {
 	
 	private String owner;
 	
-	private String points;
+	private String cpu_brand;
 	
-	private String user_rating;
+	private String model;
+	
+	private String memory_type;
 
 	public String getId() {
 		return id;
@@ -43,14 +41,6 @@ public class Hard_disk {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(String speed) {
-		this.speed = speed;
 	}
 
 	public String getSize() {
@@ -84,7 +74,7 @@ public class Hard_disk {
 	public void setWarranty(String warranty) {
 		this.warranty = warranty;
 	}
-	
+
 	public String getImage() {
 		return image;
 	}
@@ -92,7 +82,7 @@ public class Hard_disk {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+
 	public String getOwner() {
 		return owner;
 	}
@@ -100,21 +90,28 @@ public class Hard_disk {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-	
-	public String getPoints() {
-		return points;
+
+	public String getCpu_brand() {
+		return cpu_brand;
 	}
 
-	public void setPoints(String points) {
-		this.points = points;
+	public void setCpu_brand(String cpu_brand) {
+		this.cpu_brand = cpu_brand;
 	}
 
-	public String getUser_rating() {
-		return user_rating;
+	public String getModel() {
+		return model;
 	}
 
-	public void setUser_rating(String user_rating) {
-		this.user_rating = user_rating;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
+	public String getMemory_type() {
+		return memory_type;
+	}
+
+	public void setMemory_type(String memory_type) {
+		this.memory_type = memory_type;
+	}
 }

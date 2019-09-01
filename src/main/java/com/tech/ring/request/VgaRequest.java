@@ -1,12 +1,10 @@
-package com.tech.ring.domain;
+package com.tech.ring.request;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Document(collection = "Hard_Disk")
-public class Hard_disk {
-	
-	@Id
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class VgaRequest {
+
 	private String id;
 
 	private String name;
@@ -25,9 +23,9 @@ public class Hard_disk {
 	
 	private String owner;
 	
-	private String points;
+	private String chipset;
 	
-	private String user_rating;
+	private String capacity;
 
 	public String getId() {
 		return id;
@@ -84,7 +82,7 @@ public class Hard_disk {
 	public void setWarranty(String warranty) {
 		this.warranty = warranty;
 	}
-	
+
 	public String getImage() {
 		return image;
 	}
@@ -92,7 +90,7 @@ public class Hard_disk {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+
 	public String getOwner() {
 		return owner;
 	}
@@ -100,21 +98,21 @@ public class Hard_disk {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-	
-	public String getPoints() {
-		return points;
+
+	public String getChipset() {
+		return chipset;
 	}
 
-	public void setPoints(String points) {
-		this.points = points;
+	public void setChipset(String chipset) {
+		this.chipset = chipset;
 	}
 
-	public String getUser_rating() {
-		return user_rating;
+	public String getCapacity() {
+		return capacity;
 	}
 
-	public void setUser_rating(String user_rating) {
-		this.user_rating = user_rating;
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
 	}
 
 }

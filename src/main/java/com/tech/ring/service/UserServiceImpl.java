@@ -74,4 +74,16 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 
+	@Override
+	public User getUsers(String id) {
+		User user = userDao.findUserById(id);
+		
+		if(user == null) {
+			throw new TechRingException(TechRingApplicationErrors.USER_CAN_NOT_FIND);
+		}
+		else {
+			return user;
+		}
+	}
+
 }

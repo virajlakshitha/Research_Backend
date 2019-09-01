@@ -24,6 +24,12 @@ public class Ram {
 	private String image;
 	
 	private String owner;
+	
+	private String model;
+	
+	private String points;
+	
+	private String user_rating;
 
 	public String getId() {
 		return id;
@@ -96,6 +102,29 @@ public class Ram {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
 	
+	public String getPoints() {
+		return points;
+	}
+
+	public void setPoints(String points) {
+		this.points = points;
+	}
+
+	public String getUser_rating() {
+		return user_rating;
+	}
+
+	public void setUser_rating(String user_rating) {
+		this.user_rating = user_rating;
+	}
 	
 }

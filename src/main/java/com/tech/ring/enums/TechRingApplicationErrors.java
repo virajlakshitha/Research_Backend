@@ -17,7 +17,8 @@ public enum TechRingApplicationErrors {
 	PCPART_ALLREADY_EXISTS("013","PC Part already exists"),
 	PCPART_NOT_FOUND("014","PC Part Not Found"),
 	GAME_ALLREADY_EXISTS("015","Game allready exists"),
-	GAME_NOT_FOUND("0016","Game not found");
+	GAME_NOT_FOUND("0016","Game not found"),
+	BUILD_SEQUENCE_NOT_FOUND("017", "Build Sequence Not Found");
 	
 	private String statusCode;
 	private String statusMessage;

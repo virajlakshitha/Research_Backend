@@ -1,12 +1,10 @@
-package com.tech.ring.domain;
+package com.tech.ring.request;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Document(collection = "Hard_Disk")
-public class Hard_disk {
-	
-	@Id
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class RamRequest {
+
 	private String id;
 
 	private String name;
@@ -25,9 +23,7 @@ public class Hard_disk {
 	
 	private String owner;
 	
-	private String points;
-	
-	private String user_rating;
+	private String model;
 
 	public String getId() {
 		return id;
@@ -84,7 +80,7 @@ public class Hard_disk {
 	public void setWarranty(String warranty) {
 		this.warranty = warranty;
 	}
-	
+
 	public String getImage() {
 		return image;
 	}
@@ -92,7 +88,7 @@ public class Hard_disk {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+
 	public String getOwner() {
 		return owner;
 	}
@@ -100,21 +96,12 @@ public class Hard_disk {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-	
-	public String getPoints() {
-		return points;
+
+	public String getModel() {
+		return model;
 	}
 
-	public void setPoints(String points) {
-		this.points = points;
+	public void setModel(String model) {
+		this.model = model;
 	}
-
-	public String getUser_rating() {
-		return user_rating;
-	}
-
-	public void setUser_rating(String user_rating) {
-		this.user_rating = user_rating;
-	}
-
 }
