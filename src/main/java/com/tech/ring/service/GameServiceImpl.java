@@ -83,4 +83,17 @@ public class GameServiceImpl implements GameService {
 		
 	}
 
+	@Override
+	public Game findById(String id) {
+		Game game = gameDao.findById(id);
+		
+		if(game != null) {
+			
+			return game;
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.CAN_NOT_FIND_MATCHING_RESULT);
+		}
+	}
+
 }
