@@ -121,7 +121,7 @@ public class PCPartController {
 	
 	@RequestMapping(method = RequestMethod.GET , value = "/{category}/byId/{id}")
 	public TechRingResponse getPCPartById(@PathVariable("category") String category, @PathVariable("id") String id) {
-		
+		System.out.println(category+"     "+id);
 		Ram ram = null;
 		Vga vga = null;
 		Cpu cpu = null;
