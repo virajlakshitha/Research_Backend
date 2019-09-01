@@ -227,9 +227,9 @@ public class BuildForPriceController {
                 	hard_disk.setName(arr[7]);
                 	hard_disk.setPrice(arr[15]);
                 	hard_disk.setImage(arr[27]);
-                	hard_disk.setUser_rating(arr[32]);
+//                	hard_disk.setUser_rating(arr[32]);
                 } 
-                System.out.println(arr[3]);
+//                System.out.println(arr[3]);
             }
 		} catch(Exception e) {
 			e.printStackTrace();
