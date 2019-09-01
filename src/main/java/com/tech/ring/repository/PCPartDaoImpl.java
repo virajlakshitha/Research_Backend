@@ -13,7 +13,10 @@ import com.tech.ring.domain.Game;
 import com.tech.ring.domain.Hard_disk;
 import com.tech.ring.domain.Motherboard;
 import com.tech.ring.domain.Ram;
+import com.tech.ring.domain.User;
 import com.tech.ring.domain.Vga;
+import com.tech.ring.request.NotificationRequest;
+import com.tech.ring.domain.Notification;
 
 @Repository
 public class PCPartDaoImpl implements PCPartDao{
@@ -27,7 +30,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			mongoTemplate.save(pcpart);
 			return pcpart;
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -35,7 +38,6 @@ public class PCPartDaoImpl implements PCPartDao{
 
 	@Override
 	public List<Ram> findByRamPartByName(String partName) {
-
 		try {
 			
 			if(partName.equals("all")) {
@@ -46,7 +48,8 @@ public class PCPartDaoImpl implements PCPartDao{
 				Query query = new Query();
 				query.addCriteria(Criteria.where("name").is(partName));
 				
-				return mongoTemplate.find(query, Ram.class);
+				List<Ram> rams = mongoTemplate.find(query, Ram.class);
+				return rams;
 			}
 			
 			
@@ -340,6 +343,75 @@ public class PCPartDaoImpl implements PCPartDao{
 			return mongoTemplate.findAll(Ram.class);
 			
 		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<User> getVendorsForProduct(String category, String pro_name) {
+		try {
+			Query query = new Query();
+			Query query_user = new Query();
+			query.addCriteria(Criteria.where("name").is(pro_name));
+			Ram ram = null;
+			Vga vga = null;
+			Motherboard motherboard = null;
+			Cpu cpu = null;
+			Hard_disk hard_disk = null;
+			if(category.equals("ram")) {
+				ram =  (Ram) mongoTemplate.find(query, Ram.class);
+				query_user.addCriteria(Criteria.where("name").is(ram.getOwner()));
+			}
+			else if(category.equals("vga")) {
+				vga =  (Vga) mongoTemplate.find(query, Vga.class);
+				query_user.addCriteria(Criteria.where("name").is(vga.getOwner()));
+			}
+			else if(category.equals("motherboard")) {
+				motherboard =  (Motherboard) mongoTemplate.find(query, Motherboard.class);
+				query_user.addCriteria(Criteria.where("name").is(motherboard.getOwner()));
+			}
+			else if(category.equals("cpu")) {
+				cpu =  (Cpu) mongoTemplate.find(query, Cpu.class);
+				query_user.addCriteria(Criteria.where("name").is(cpu.getOwner()));
+			}
+			else if(category.equals("hard_disk")) {
+				hard_disk =  (Hard_disk) mongoTemplate.find(query, Hard_disk.class);
+				query_user.addCriteria(Criteria.where("name").is(hard_disk.getOwner()));
+			}
+			return mongoTemplate.find(query_user, User.class);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public Notification pushNotification(Notification notification) {
+		try {
+			mongoTemplate.save(notification);
+			return notification;
+		} catch (Exception e) {
+			
+			return null;
+		}
+		
+	}
+
+
+	@Override
+	public Notification checkNotification(String user_id, String product) {
+
+		try {
+			Query query = new Query();
+			Query query_user = new Query();
+			query_user.addCriteria(Criteria.where("ObjectId").is(user_id));
+			User user = (User) mongoTemplate.find(query_user, User.class);
+			
+			query.addCriteria(Criteria.where("email").is(user.getEmail()).andOperator(Criteria.where("product").is(product)));
+			Notification result = mongoTemplate.findOne(query, Notification.class);
+			return result;
+		} catch(Exception e) {
 			return null;
 		}
 	}

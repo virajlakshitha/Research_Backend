@@ -11,19 +11,25 @@ public class Motherboard {
 
 	private String name;
 
-	private String speed;
-
 	private String size;
 
 	private String type;
 
-	private double price;
+	private String price;
 
 	private String warranty;
 	
 	private String image;
 	
 	private String owner;
+	
+	private String cpu_brand;
+	
+	private String model;
+	
+	private String memory_type;
+	
+	private String points;
 
 	public String getId() {
 		return id;
@@ -39,14 +45,6 @@ public class Motherboard {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(String speed) {
-		this.speed = speed;
 	}
 
 	public String getSize() {
@@ -65,11 +63,11 @@ public class Motherboard {
 		this.type = type;
 	}
 
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -97,4 +95,35 @@ public class Motherboard {
 		this.owner = owner;
 	}
 
+	public String getCpu_brand() {
+		return cpu_brand;
+	}
+
+	public void setCpu_brand(String cpu_brand) {
+		this.cpu_brand = cpu_brand;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public String getMemory_type() {
+		return memory_type;
+	}
+
+	public void setMemory_type(String memory_type) {
+		this.memory_type = memory_type;
+	}
+
+	public String getPoints() {
+		return points;
+	}
+
+	public void setPoints(String points) {
+		this.points = points;
+	}
 }

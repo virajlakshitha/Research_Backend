@@ -35,41 +35,43 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public HashMap<String, String> userSignUp(UserSignUpRequest userSignUpRequest) {
 		
-		User user = userDao.findByuserName(userSignUpRequest.getUserName());
+//		User user = userDao.findByuserName(userSignUpRequest.getUserName());
+//		
+//		if(user == null) {
+//			
+//			Role role = roleDao.findRoleByroleName(RoleName.ROLE_USER.toString());
+//			List<Role> roleList = new ArrayList<>();
+//			roleList.add(role);
+//			
+//			if(role != null) {
+//				User newUser = new User();
+//				
+//				newUser.setFirstName(userSignUpRequest.getFirstName());
+//				newUser.setLastName(userSignUpRequest.getLastName());
+//				newUser.setUserName(userSignUpRequest.getUserName());
+//				newUser.setEmail(userSignUpRequest.getEmail());
+//				newUser.setPassword(passwordEncoder.encode(userSignUpRequest.getPassword()));
+//				newUser.setRoles(roleList);
+//				
+//				User result = userDao.save(newUser);
+//				
+//				if(result != null) {
+//					HashMap<String, String> hm = new HashMap<>();
+//					hm.put("message", "User created");
+//					return hm;
+//				}else {
+//					throw new TechRingException(TechRingApplicationErrors.USER_NOT_CREATED);
+//				}
+//				
+//			}else {
+//				throw new TechRingException(TechRingApplicationErrors.USER_ROLE_NOT_FOUND);
+//			}
+//	
+//		}else {
+//			throw new TechRingException(TechRingApplicationErrors.USER_NAME_ALREADY_EXISTS);
+//		}
 		
-		if(user == null) {
-			
-			Role role = roleDao.findRoleByroleName(RoleName.ROLE_USER.toString());
-			List<Role> roleList = new ArrayList<>();
-			roleList.add(role);
-			
-			if(role != null) {
-				User newUser = new User();
-				
-				newUser.setFirstName(userSignUpRequest.getFirstName());
-				newUser.setLastName(userSignUpRequest.getLastName());
-				newUser.setUserName(userSignUpRequest.getUserName());
-				newUser.setEmail(userSignUpRequest.getEmail());
-				newUser.setPassword(passwordEncoder.encode(userSignUpRequest.getPassword()));
-				newUser.setRoles(roleList);
-				
-				User result = userDao.save(newUser);
-				
-				if(result != null) {
-					HashMap<String, String> hm = new HashMap<>();
-					hm.put("message", "User created");
-					return hm;
-				}else {
-					throw new TechRingException(TechRingApplicationErrors.USER_NOT_CREATED);
-				}
-				
-			}else {
-				throw new TechRingException(TechRingApplicationErrors.USER_ROLE_NOT_FOUND);
-			}
-	
-		}else {
-			throw new TechRingException(TechRingApplicationErrors.USER_NAME_ALREADY_EXISTS);
-		}
+		return null;
 	}
 
 }

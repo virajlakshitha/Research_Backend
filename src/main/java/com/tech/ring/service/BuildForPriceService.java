@@ -1,7 +1,9 @@
 package com.tech.ring.service;
 
+import java.util.HashMap;
 import java.util.List;
 
+import com.tech.ring.domain.BuildSequence;
 import com.tech.ring.domain.Cpu;
 import com.tech.ring.domain.Hard_disk;
 import com.tech.ring.domain.Motherboard;
@@ -12,9 +14,14 @@ public interface BuildForPriceService {
 	
 	public List<Ram> getAll();
 
-	public Ram getRamUnderBudget(String id,String min,String max);
-	public Vga getVgaUnderBudget(String id,String min,String max);
-	public Cpu getCpuUnderBudget(String id,String min,String max);
-	public Motherboard getMotherboardUnderBudget(String id,String min,String max);
-	public Hard_disk getHardDiskUnderBudget(String id,String min,String max);
+	public List<Ram> getRamUnderBudget(Double min,Double max);
+	public List<Vga> getVgaUnderBudget(Double min,Double max);
+	public List<Cpu> getCpuUnderBudget(Double min,Double max);
+	public List<Motherboard> getMotherboardUnderBudget(Double min,Double max);
+	public List<Hard_disk> getHardDiskUnderBudget(Double min,Double max);
+	
+	public List<BuildSequence> budget_plan(Double min, Double max);
+	public List<BuildSequence> budget_plan_price(String category, Double min, Double max);
+	
+	public HashMap<String, Double> getMaxMinBudget();
 }

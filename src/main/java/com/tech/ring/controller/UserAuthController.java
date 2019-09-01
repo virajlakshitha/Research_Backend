@@ -22,7 +22,7 @@ import com.tech.ring.service.UserService;
 
 
 @RestController
-@RequestMapping(value = "/api/auth")
+@RequestMapping(value = "/api-techRing/auth")
 public class UserAuthController {
 	
 	@Autowired
@@ -34,8 +34,20 @@ public class UserAuthController {
 	@Autowired
 	AuthenticationManager am;
 	
-	@RequestMapping(value = "/create" , method = RequestMethod.POST)
-	public TechRingResponse userSignUp(@RequestBody UserSignUpRequest userSignUpRequest) {
+	@RequestMapping(value = "/create/customer" , method = RequestMethod.POST)
+	public TechRingResponse userSignUpCustomer(@RequestBody UserSignUpRequest userSignUpRequest) {
+		
+		HashMap<String, String> hm = userService.userSignUp(userSignUpRequest);
+		
+		TechRingResponse mongoResponse = new TechRingResponse();
+		mongoResponse.setResponseCode("111");
+		mongoResponse.setResponseObject(hm);
+		
+		return mongoResponse;
+	}
+	
+	@RequestMapping(value = "/create/vendor" , method = RequestMethod.POST)
+	public TechRingResponse userSignUpVendor(@RequestBody UserSignUpRequest userSignUpRequest) {
 		
 		HashMap<String, String> hm = userService.userSignUp(userSignUpRequest);
 		

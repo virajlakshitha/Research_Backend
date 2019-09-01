@@ -15,7 +15,7 @@ public class PCPartRequest {
 	
 	private String brand;
 	
-	private double price;
+	private String price;
 	
 	private String type;
 	
@@ -65,11 +65,11 @@ public class PCPartRequest {
 		this.brand = brand;
 	}
 
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
