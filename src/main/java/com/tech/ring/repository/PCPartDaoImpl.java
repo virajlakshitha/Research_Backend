@@ -3,6 +3,7 @@ package com.tech.ring.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -45,7 +46,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			}
 			else {
 				Query query = new Query();
-				query.addCriteria(Criteria.where("name").is(partName));
+				query.addCriteria(Criteria.where("name").regex(partName));
 				
 				List<Ram> rams = mongoTemplate.find(query, Ram.class);
 				return rams;
@@ -77,7 +78,7 @@ public class PCPartDaoImpl implements PCPartDao{
 		try {
 			
 			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(part_name));
+			query.addCriteria(Criteria.where("name").regex(part_name));
 			
 			return mongoTemplate.find(query, Ram.class);
 			
@@ -95,7 +96,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			}
 			else {
 				Query query = new Query();
-				query.addCriteria(Criteria.where("name").is(partName));
+				query.addCriteria(Criteria.where("name").regex(partName));
 				
 				return mongoTemplate.find(query, Vga.class);
 			}
@@ -125,7 +126,7 @@ public class PCPartDaoImpl implements PCPartDao{
 		try {
 			
 			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(part_name));
+			query.addCriteria(Criteria.where("name").regex(part_name));
 			
 			return mongoTemplate.find(query, Vga.class);
 			
@@ -155,7 +156,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			}
 			else {
 				Query query = new Query();
-				query.addCriteria(Criteria.where("name").is(partName));
+				query.addCriteria(Criteria.where("name").regex(partName));
 				
 				return mongoTemplate.find(query, Cpu.class);
 			}
@@ -187,7 +188,7 @@ public class PCPartDaoImpl implements PCPartDao{
 		try {
 			
 			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(part_name));
+			query.addCriteria(Criteria.where("name").regex(part_name));
 			
 			return mongoTemplate.find(query, Cpu.class);
 			
@@ -218,7 +219,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			}
 			else {
 				Query query = new Query();
-				query.addCriteria(Criteria.where("name").is(partName));
+				query.addCriteria(Criteria.where("name").regex(partName));
 				
 				return mongoTemplate.find(query, Motherboard.class);
 			}
@@ -250,7 +251,7 @@ public class PCPartDaoImpl implements PCPartDao{
 		try {
 			
 			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(part_name));
+			query.addCriteria(Criteria.where("name").regex(part_name));
 			
 			return mongoTemplate.find(query, Motherboard.class);
 			
@@ -281,7 +282,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			}
 			else {
 				Query query = new Query();
-				query.addCriteria(Criteria.where("name").is(partName));
+				query.addCriteria(Criteria.where("name").regex(partName));
 				
 				return mongoTemplate.find(query, Hard_disk.class);
 			}
@@ -313,7 +314,7 @@ public class PCPartDaoImpl implements PCPartDao{
 		try {
 			
 			Query query = new Query();
-			query.addCriteria(Criteria.where("name").is(part_name));
+			query.addCriteria(Criteria.where("name").regex(part_name));
 			
 			return mongoTemplate.find(query, Hard_disk.class);
 			
@@ -352,7 +353,7 @@ public class PCPartDaoImpl implements PCPartDao{
 		try {
 			Query query = new Query();
 			Query query_user = new Query();
-			query.addCriteria(Criteria.where("name").is(pro_name));
+			query.addCriteria(Criteria.where("name").regex(pro_name));
 			Ram ram = null;
 			Vga vga = null;
 			Motherboard motherboard = null;
@@ -404,13 +405,216 @@ public class PCPartDaoImpl implements PCPartDao{
 		try {
 			Query query = new Query();
 			Query query_user = new Query();
-			query_user.addCriteria(Criteria.where("ObjectId").is(user_id));
+			query_user.addCriteria(Criteria.where("_id").is(user_id));
 			User user = (User) mongoTemplate.find(query_user, User.class);
 			
 			query.addCriteria(Criteria.where("email").is(user.getEmail()).andOperator(Criteria.where("product").is(product)));
 			Notification result = mongoTemplate.findOne(query, Notification.class);
 			return result;
 		} catch(Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<Ram> findBySortedRamPartByName(String partName, int option) {
+		
+		try {
+			
+			if(partName.equals("all")) {
+				Query query = new Query();
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				return mongoTemplate.find(query, Ram.class);
+			}
+			else {
+				Query query = new Query();
+				
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				query.addCriteria(Criteria.where("name").regex(partName));
+				List<Ram> rams = mongoTemplate.find(query, Ram.class);
+				System.out.println(rams);
+				return rams;
+			}
+			
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<Vga> findBySortedVgaPartByName(String partName, int option) {
+		try {
+			
+			if(partName.equals("all")) {
+				Query query = new Query();
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				return mongoTemplate.find(query, Vga.class);
+			}
+			else {
+				Query query = new Query();
+				query.addCriteria(Criteria.where("name").regex(partName));
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				List<Vga> vgas = mongoTemplate.find(query, Vga.class);
+				return vgas;
+			}
+			
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<Cpu> findBySortedCpuPartByName(String partName, int option) {
+		try {
+			
+			if(partName.equals("all")) {
+				Query query = new Query();
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				return mongoTemplate.find(query, Cpu.class);
+			}
+			else {
+				Query query = new Query();
+				query.addCriteria(Criteria.where("name").regex(partName));
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				List<Cpu> cpus = mongoTemplate.find(query, Cpu.class);
+				return cpus;
+			}
+			
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<Motherboard> findBySortedMotherboardPartByName(String partName, int option) {
+		try {
+			
+			if(partName.equals("all")) {
+				Query query = new Query();
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				return mongoTemplate.find(query, Motherboard.class);
+			}
+			else {
+				Query query = new Query();
+				query.addCriteria(Criteria.where("name").regex(partName));
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				List<Motherboard> motherboard = mongoTemplate.find(query, Motherboard.class);
+				return motherboard;
+			}
+			
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<Hard_disk> findBySortedHard_diskPartByName(String partName, int option) {
+		try {
+			
+			if(partName.equals("all")) {
+				Query query = new Query();
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				return mongoTemplate.find(query, Hard_disk.class);
+			}
+			else {
+				Query query = new Query();
+				query.addCriteria(Criteria.where("name").regex(partName));
+				if(option == 0) {
+					query.with(new Sort(Sort.Direction.DESC, "user_rating"));
+				}
+				else if(option == 1) {
+					query.with(new Sort(Sort.Direction.ASC, "price"));
+				}
+				else if(option == 2) {
+					query.with(new Sort(Sort.Direction.ASC, "ratings"));
+				}
+				List<Hard_disk> hard_disks = mongoTemplate.find(query, Hard_disk.class);
+				return hard_disks;
+			}
+			
+			
+		} catch (Exception e) {
 			return null;
 		}
 	}

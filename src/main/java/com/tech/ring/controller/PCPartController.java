@@ -26,6 +26,7 @@ import com.tech.ring.request.NotificationRequest;
 import com.tech.ring.request.PCPartRequest;
 import com.tech.ring.response.TechRingResponse;
 import com.tech.ring.service.PCPartService;
+import com.tech.ring.service.UserService;
 
 @RestController
 @RequestMapping(value = "/api-techRing/pcparts")
@@ -33,6 +34,9 @@ public class PCPartController {
 	
 	@Autowired
 	PCPartService pcpartService;
+	
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping(method = RequestMethod.POST , value = "/create")
 	public TechRingResponse createPCPart(@RequestBody PCPartRequest pcpartRequest) {
@@ -154,7 +158,7 @@ public class PCPartController {
 		return techRingResponse;
 	}
 
-	@RequestMapping(method = RequestMethod.GET , value = "/getVendorPrices/{category}/{name}")
+	@RequestMapping(method = RequestMethod.GET , value = "/vendor_prices/{category}/{name}")
 	public TechRingResponse getVendorPrices(@PathVariable("category") String category, @PathVariable("name") String name) {
 		
 		List<Ram> ram = null;
@@ -209,10 +213,50 @@ public class PCPartController {
 	public TechRingResponse pushNotification(@RequestBody NotificationRequest notificationRequest) {
 		TechRingResponse techRingResponse = new TechRingResponse();
 		
+		User user = userService.getUsers(notificationRequest.getId());
 		HashMap<String, String> hm = pcpartService.pushNotification(notificationRequest);
 		techRingResponse.setResponseCode("111");
 		
 		return techRingResponse;
 	} 
+	
+	@RequestMapping(method = RequestMethod.GET , value = "/sort_by/{category}/{name}/{option}")
+	public TechRingResponse sortPCPart(@PathVariable("category") String category, @PathVariable("name") String name, @PathVariable("option") int option) {
+		
+		List<Ram> ram = null;
+		List<Vga> vga = null;
+		List<Cpu> cpu = null;
+		List<Motherboard> motherboard = null;
+		List<Hard_disk> hard_disk = null;
+		TechRingResponse techRingResponse = new TechRingResponse();
+		
+		if(category.equals("ram")) {
+			ram = pcpartService.getSortedRamPartsByName(name, option);
+			techRingResponse.setResponseCode("111");
+			techRingResponse.setResponseObject(ram);
+		}
+		else if(category.equals("vga")) {
+			vga = pcpartService.getSortedVgaPartsByName(name, option);
+			techRingResponse.setResponseCode("111");
+			techRingResponse.setResponseObject(vga);
+		}
+		else if(category.equals("cpu")) {
+			cpu = pcpartService.getSortedCpuPartsByName(name, option);
+			techRingResponse.setResponseCode("111");
+			techRingResponse.setResponseObject(cpu);
+		}
+		else if(category.equals("motherboard")) {
+			motherboard = pcpartService.getSortedMotherboardPartsByName(name, option);
+			techRingResponse.setResponseCode("111");
+			techRingResponse.setResponseObject(motherboard);
+		}
+		else if(category.equals("hard_disk")) {
+			hard_disk = pcpartService.getSortedHardDiskPartsByName(name, option);
+			techRingResponse.setResponseCode("111");
+			techRingResponse.setResponseObject(hard_disk);
+		}
+		
+		return techRingResponse;
+	}
 	
 }
