@@ -13,6 +13,9 @@ public class Comments {
 		this.comment_name = comment_name;
 		this.comment_pic = comment_pic;
 	}
+	public Comments() {
+		
+	}
 
 	public String getComment() {
 		return comment;

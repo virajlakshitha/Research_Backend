@@ -424,5 +424,73 @@ public class PCPartServiceImpl implements PCPartService{
 		
 	}
 
+	@Override
+	public List<Ram> getSortedRamPartsByName(String name, int option) {
+		List<Ram> pcpart = pcpartDao.findBySortedRamPartByName(name, option);
+		
+		if(pcpart != null && !pcpart.isEmpty()) {
+			return pcpart;
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
+		}
+	}
+
+	@Override
+	public List<Vga> getSortedVgaPartsByName(String name, int option) {
+		List<Vga> pcpart = pcpartDao.findBySortedVgaPartByName(name, option);
+		
+		if(pcpart != null && !pcpart.isEmpty()) {
+			
+			return pcpart;
+			
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
+		}
+	}
+
+	@Override
+	public List<Cpu> getSortedCpuPartsByName(String name, int option) {
+		List<Cpu> pcpart = pcpartDao.findBySortedCpuPartByName(name, option);
+		
+		if(pcpart != null && !pcpart.isEmpty()) {
+			
+			return pcpart;
+			
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
+		}
+	}
+
+	@Override
+	public List<Motherboard> getSortedMotherboardPartsByName(String name, int option) {
+		List<Motherboard> pcpart = pcpartDao.findBySortedMotherboardPartByName(name, option);
+		
+		if(pcpart != null && !pcpart.isEmpty()) {
+			
+			return pcpart;
+			
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
+		}
+	}
+
+	@Override
+	public List<Hard_disk> getSortedHardDiskPartsByName(String name, int option) {
+		List<Hard_disk> pcpart = pcpartDao.findBySortedHard_diskPartByName(name, option);
+		
+		if(pcpart != null && !pcpart.isEmpty()) {
+			
+			return pcpart;
+			
+		}
+		else {
+			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
+		}
+	}
+
 
 }

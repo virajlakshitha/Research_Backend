@@ -23,15 +23,8 @@ import com.tech.ring.service.PCPartService;
 @RequestMapping(value = "/api-techRing/pcparts/comments")
 public class SentimentAnalysisController {
 	
-	@RequestMapping(method = RequestMethod.GET , value = "/{name}")
-	public TechRingResponse createPCPart(@PathVariable String name) {
-		
-		String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Reasearh_Scripts\\price_optimization\\build_for_price\\fb.py";
-		try {
-			Process p = Runtime.getRuntime().exec(Path);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	@RequestMapping(method = RequestMethod.GET , value = "")
+	public TechRingResponse createPCPart() {
 		
 		List<Comments> comments = new ArrayList<Comments>();
 		try {
@@ -42,8 +35,20 @@ public class SentimentAnalysisController {
 	        
 	        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
 	            while ((line = br.readLine()) != null) {
+	            	System.out.println(line);
 	                String[] list = line.split(cvsSplitBy);
-	                Comments comment = new Comments(list[1], list[0], list[2]);
+	                Comments comment = new Comments();
+	                for(int i=0; i<list.length ; i++) {
+	                	if(i==0) {
+	                		comment.setComment_name(list[i]);
+	                	}
+	                	else if(i==1) {
+	                		comment.setComment(list[i]);
+	                	}
+	                	else if(i==2) {
+	                		comment.setComment_pic(list[i]);
+	                	}
+	                }
 	                comments.add(comment);
 	            }
 	        }
