@@ -166,8 +166,8 @@ public class BuildForPriceController {
 	@RequestMapping(method = RequestMethod.GET , value = "change/{pro}/{min}/{max}/{motherboard}/{cpu}/{ram}/{vga}/{hard_disk}")
 	public TechRingResponse changePCPart(@PathVariable("pro") String pro, @PathVariable("min") String min, @PathVariable("max") String max, @PathVariable("motherboard") String motherboard_pro, @PathVariable("cpu") String cpu_pro, @PathVariable("ram") String ram_pro, @PathVariable("vga") String vga_pro, @PathVariable("hard_disk") String hard_disk_pro) {
 		
-		String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Reasearh_Scripts\\price_optimization\\build_for_price\\Build_sequence_change_product.py "+pro+" "+min+" "+max+" "+motherboard_pro+" "+cpu_pro+" "+ram_pro+" "+vga_pro+" "+hard_disk_pro;
-//		String Path = "python D:\\Tech-Ring-Team\\Reasearh_Scripts\\price_optimization\\build_for_price\\Build_sequence_change_product.py "+pro+" "+min+" "+max+" "+motherboard_pro+" "+cpu_pro+" "+ram_pro+" "+vga_pro+" "+hard_disk_pro;
+//		String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Reasearh_Scripts\\price_optimization\\build_for_price\\Build_sequence_change_product.py "+pro+" "+min+" "+max+" "+motherboard_pro+" "+cpu_pro+" "+ram_pro+" "+vga_pro+" "+hard_disk_pro;
+		String Path = "python D:\\Tech-Ring-Team\\Reasearh_Scripts\\price_optimization\\build_for_price\\Build_sequence_change_product.py "+pro+" "+min+" "+max+" "+motherboard_pro+" "+cpu_pro+" "+ram_pro+" "+vga_pro+" "+hard_disk_pro;
 		Ram ram = new Ram();
         Vga vga = new Vga();
         Cpu cpu = new Cpu();
@@ -255,8 +255,8 @@ public class BuildForPriceController {
 	public TechRingResponse budget_plan_price(@PathVariable("ram_min") String ram_min, @PathVariable("ram_max") String ram_max, @PathVariable("vga_min") String vga_min, @PathVariable("vga_max") String vga_max, @PathVariable("cpu_min") String cpu_min, @PathVariable("cpu_max") String cpu_max, @PathVariable("motherboard_min") String motherboard_min, @PathVariable("motherboard_max") String motherboard_max, @PathVariable("hard_disk_min") String hard_disk_min, @PathVariable("hard_disk_max") String hard_disk_max) {
 		System.out.println(ram_min+"   "+ram_max);
 	
-		String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Reasearh_Scripts\\price_optimization\\build_for_price\\Build_sequence_price_range.py "+ram_min+" "+ram_max+" "+vga_min+" "+vga_max+" "+cpu_min+" "+cpu_max+" "+motherboard_min+" "+motherboard_max+" "+hard_disk_min+" "+hard_disk_max;
-//		String Path = "python D:\\Tech-Ring-Team\\Reasearh_Scripts\\price_optimization\\build_for_price\\Build_sequence_price_range.py "+ram_min+" "+ram_max+" "+vga_min+" "+vga_max+" "+cpu_min+" "+cpu_max+" "+motherboard_min+" "+motherboard_max+" "+hard_disk_min+" "+hard_disk_max;
+//		String Path = "python C:\\Users\\viraj\\Desktop\\Research_BackEnd\\Reasearh_Scripts\\price_optimization\\build_for_price\\Build_sequence_price_range.py "+ram_min+" "+ram_max+" "+vga_min+" "+vga_max+" "+cpu_min+" "+cpu_max+" "+motherboard_min+" "+motherboard_max+" "+hard_disk_min+" "+hard_disk_max;
+		String Path = "python D:\\Tech-Ring-Team\\Reasearh_Scripts\\price_optimization\\build_for_price\\Build_sequence_price_range.py "+ram_min+" "+ram_max+" "+vga_min+" "+vga_max+" "+cpu_min+" "+cpu_max+" "+motherboard_min+" "+motherboard_max+" "+hard_disk_min+" "+hard_disk_max;
 		List<BuildSequence> list = new ArrayList<BuildSequence>();
         try {
         	Process p = Runtime.getRuntime().exec(Path);
