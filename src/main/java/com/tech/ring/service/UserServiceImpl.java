@@ -32,46 +32,69 @@ public class UserServiceImpl implements UserService{
 	PasswordEncoder passwordEncoder;
 	
 	@Override
-	@Transactional
-	public HashMap<String, String> userSignUp(UserSignUpRequest userSignUpRequest) {
+//	@Transactional
+	public HashMap<String, String> userSignUp(UserSignUpRequest userSignUpRequest, String role) {
 		
-//		User user = userDao.findByuserName(userSignUpRequest.getUserName());
-//		
-//		if(user == null) {
-//			
+		User user = userDao.findByuserName(userSignUpRequest.getUsername());
+		if(user == null) {
+			if(role.equals("customer")) {
 //			Role role = roleDao.findRoleByroleName(RoleName.ROLE_USER.toString());
 //			List<Role> roleList = new ArrayList<>();
 //			roleList.add(role);
 //			
 //			if(role != null) {
-//				User newUser = new User();
+				User newUser = new User();
 //				
 //				newUser.setFirstName(userSignUpRequest.getFirstName());
 //				newUser.setLastName(userSignUpRequest.getLastName());
-//				newUser.setUserName(userSignUpRequest.getUserName());
-//				newUser.setEmail(userSignUpRequest.getEmail());
-//				newUser.setPassword(passwordEncoder.encode(userSignUpRequest.getPassword()));
+				newUser.setUserName(userSignUpRequest.getUsername());
+				newUser.setEmail(userSignUpRequest.getEmail());
+				newUser.setPassword(passwordEncoder.encode(userSignUpRequest.getPassword()));
+				newUser.setType("customer");
 //				newUser.setRoles(roleList);
 //				
-//				User result = userDao.save(newUser);
+				User result = userDao.saveUser(newUser);
 //				
-//				if(result != null) {
-//					HashMap<String, String> hm = new HashMap<>();
-//					hm.put("message", "User created");
-//					return hm;
-//				}else {
-//					throw new TechRingException(TechRingApplicationErrors.USER_NOT_CREATED);
-//				}
-//				
+				if(result != null) {
+					HashMap<String, String> hm = new HashMap<>();
+					hm.put("message", "User created");
+					return hm;
+				}else {
+					throw new TechRingException(TechRingApplicationErrors.USER_NOT_CREATED);
+				}
+				
 //			}else {
 //				throw new TechRingException(TechRingApplicationErrors.USER_ROLE_NOT_FOUND);
 //			}
-//	
-//		}else {
-//			throw new TechRingException(TechRingApplicationErrors.USER_NAME_ALREADY_EXISTS);
-//		}
-		
-		return null;
+			} else if(role.equals("vendor")) {
+				User newUser = new User();
+				newUser.setUserName(userSignUpRequest.getUsername());
+				newUser.setEmail(userSignUpRequest.getEmail());
+				newUser.setPassword(passwordEncoder.encode(userSignUpRequest.getPassword()));
+				newUser.setCity(userSignUpRequest.getCity());
+				newUser.setProvince(userSignUpRequest.getProvince());
+				newUser.setStreet1(userSignUpRequest.getStreet1());
+				newUser.setStreet2(userSignUpRequest.getStreet2());
+				newUser.setTel(userSignUpRequest.getTel());
+				newUser.setMobile(userSignUpRequest.getMobile());
+				newUser.setCard_no(userSignUpRequest.getCard_no());
+				newUser.setType("vendor");
+				User result = userDao.saveUser(newUser);
+				
+				if(result != null) {
+					HashMap<String, String> hm = new HashMap<>();
+					hm.put("message", "User created");
+					return hm;
+				}else {
+					throw new TechRingException(TechRingApplicationErrors.USER_NOT_CREATED);
+				}
+			}
+			else {
+				throw new TechRingException(TechRingApplicationErrors.USER_NOT_CREATED);
+			}
+		}else {
+			throw new TechRingException(TechRingApplicationErrors.USER_NAME_ALREADY_EXISTS);
+		}
 	}
 
 	@Override
