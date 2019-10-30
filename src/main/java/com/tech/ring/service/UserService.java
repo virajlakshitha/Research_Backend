@@ -8,7 +8,7 @@ import com.tech.ring.request.UserSignUpRequest;
 
 public interface UserService {
 	
-	public HashMap<String, String> userSignUp(UserSignUpRequest userSignUpRequest);
+	public HashMap<String, String> userSignUp(UserSignUpRequest userSignUpRequest, String role);
 	
 	public User getUsers(String id);
 }

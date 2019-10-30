@@ -3,6 +3,7 @@ package com.tech.ring.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -76,6 +77,7 @@ public class PCPartController {
 		List<Cpu> cpu = null;
 		List<Motherboard> motherboard = null;
 		List<Hard_disk> hard_disk = null;
+		List<Object> all = null;
 		TechRingResponse techRingResponse = new TechRingResponse();
 		
 		if(category.equals("ram")) {
@@ -121,7 +123,7 @@ public class PCPartController {
 	
 	@RequestMapping(method = RequestMethod.GET , value = "/{category}/byId/{id}")
 	public TechRingResponse getPCPartById(@PathVariable("category") String category, @PathVariable("id") String id) {
-		
+		System.out.println(category+"     "+id);
 		Ram ram = null;
 		Vga vga = null;
 		Cpu cpu = null;
@@ -158,8 +160,8 @@ public class PCPartController {
 		return techRingResponse;
 	}
 
-	@RequestMapping(method = RequestMethod.GET , value = "/vendor_prices/{category}/{name}")
-	public TechRingResponse getVendorPrices(@PathVariable("category") String category, @PathVariable("name") String name) {
+	@RequestMapping(method = RequestMethod.GET , value = "/vendor_prices/{category}/{name}/{company}")
+	public TechRingResponse getVendorPrices(@PathVariable("category") String category, @PathVariable("name") String name, @PathVariable("company") String company) {
 		
 		List<Ram> ram = null;
 		List<Vga> vga = null;
@@ -170,27 +172,27 @@ public class PCPartController {
 		TechRingResponse techRingResponse = new TechRingResponse();
 		
 		if(category.equals("ram")) {
-			ram = pcpartService.getRamPartsByName(name);
+			ram = pcpartService.findRamVendorPrices(name, company);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(ram);
 		}
 		else if(category.equals("vga")) {
-			vga = pcpartService.getVgaPartsByName(name);
+			vga = pcpartService.findVgaVendorPrices(name, company);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(vga);
 		}
 		else if(category.equals("cpu")) {
-			cpu = pcpartService.getCpuPartsByName(name);
+			cpu = pcpartService.findCpuVendorPrices(name, company);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(cpu);
 		}
 		else if(category.equals("motherboard")) {
-			motherboard = pcpartService.getMotherboardPartsByName(name);
+			motherboard = pcpartService.findMotherboardVendorPrices(name, company);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(motherboard);
 		}
 		else if(category.equals("hard_disk")) {
-			hard_disk = pcpartService.getHardDiskPartsByName(name);
+			hard_disk = pcpartService.findHardDiskVendorPrices(name, company);
 			techRingResponse.setResponseCode("111");
 			techRingResponse.setResponseObject(hard_disk);
 		}

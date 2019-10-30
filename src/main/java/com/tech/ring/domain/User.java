@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "users")
+@Document(collection = "User")
 public class User {
 	
 	@Id
@@ -31,6 +31,10 @@ public class User {
 	private String tel;
 	
 	private String mobile;
+	
+	private String card_no;
+	
+	private String type;
 	
 	@DBRef
     private List<Role> roles;
@@ -121,6 +125,22 @@ public class User {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+	
+	public String getCard_no() {
+		return card_no;
+	}
+
+	public void setCard_no(String card_no) {
+		this.card_no = card_no;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public List<Role> getRoles() {
