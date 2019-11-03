@@ -47,7 +47,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			else {
 				Query query = new Query();
 				query.with(new Sort(Sort.Direction.DESC, "rating"));
-				query.addCriteria(Criteria.where("name").in(partName));
+				query.addCriteria(Criteria.where("name").regex(partName));
 				List<Ram> rams = mongoTemplate.find(query, Ram.class);
 				return rams;
 			}
@@ -97,7 +97,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			else {
 				Query query = new Query();
 				query.with(new Sort(Sort.Direction.DESC, "rating"));
-				query.addCriteria(Criteria.where("name").in(partName));
+				query.addCriteria(Criteria.where("name").regex(partName));
 				
 				return mongoTemplate.find(query, Vga.class);
 			}
@@ -159,7 +159,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			else {
 				Query query = new Query();
 				query.with(new Sort(Sort.Direction.DESC, "rating"));
-				query.addCriteria(Criteria.where("name").in(partName));
+				query.addCriteria(Criteria.where("name").regex(partName));
 				
 				return mongoTemplate.find(query, Cpu.class);
 			}
@@ -224,9 +224,9 @@ public class PCPartDaoImpl implements PCPartDao{
 			else {
 				Query query = new Query();
 				query.with(new Sort(Sort.Direction.DESC, "rating"));
-				query.addCriteria(Criteria.where("name").in(partName));
-				
-				return mongoTemplate.find(query, Motherboard.class);
+				query.addCriteria(Criteria.where("name").regex(partName));
+				List<Motherboard> motherboards = mongoTemplate.find(query, Motherboard.class);
+				return motherboards;
 			}
 			
 			
@@ -289,7 +289,7 @@ public class PCPartDaoImpl implements PCPartDao{
 			else {
 				Query query = new Query();
 				query.with(new Sort(Sort.Direction.DESC, "rating"));
-				query.addCriteria(Criteria.where("name").in(partName));
+				query.addCriteria(Criteria.where("name").regex(partName));
 				
 				return mongoTemplate.find(query, Hard_disk.class);
 			}
