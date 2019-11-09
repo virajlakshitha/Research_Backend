@@ -82,8 +82,8 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public List<Ram> findRamVendorPrices(String part_name) {
-		List<Ram> pcpart = pcpartDao.findByRamPartByName(part_name);
+	public List<Ram> findRamVendorPrices(String part_name, String company) {
+		List<Ram> pcpart = pcpartDao.findRamVendorPrices(part_name, company);
 		
 		if(pcpart != null && !pcpart.isEmpty()) {
 			return pcpart;
@@ -150,8 +150,8 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public List<Vga> findVgaVendorPrices(String part_name) {
-		List<Vga> pcpart = pcpartDao.findByVgaPartByName(part_name);
+	public List<Vga> findVgaVendorPrices(String part_name, String company) {
+		List<Vga> pcpart = pcpartDao.findVgaVendorPrices(part_name, company);
 		
 		if(pcpart != null && !pcpart.isEmpty()) {
 			return pcpart;
@@ -219,8 +219,8 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public List<Cpu> findCpuVendorPrices(String part_name) {
-		List<Cpu> pcpart = pcpartDao.findByCpuPartByName(part_name);
+	public List<Cpu> findCpuVendorPrices(String part_name, String company) {
+		List<Cpu> pcpart = pcpartDao.findCpuVendorPrices(part_name, company);
 		
 		if(pcpart != null && !pcpart.isEmpty()) {
 			return pcpart;
@@ -288,8 +288,8 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public List<Motherboard> findMotherboardVendorPrices(String part_name) {
-		List<Motherboard> pcpart = pcpartDao.findByMotherboardPartByName(part_name);
+	public List<Motherboard> findMotherboardVendorPrices(String part_name, String company) {
+		List<Motherboard> pcpart = pcpartDao.findMotherboardVendorPrices(part_name, company);
 		
 		if(pcpart != null && !pcpart.isEmpty()) {
 			return pcpart;
@@ -357,8 +357,8 @@ public class PCPartServiceImpl implements PCPartService{
 	}
 
 	@Override
-	public List<Hard_disk> findHardDiskVendorPrices(String part_name) {
-		List<Hard_disk> pcpart = pcpartDao.findByHard_diskPartByName(part_name);
+	public List<Hard_disk> findHardDiskVendorPrices(String part_name, String company) {
+		List<Hard_disk> pcpart = pcpartDao.findHard_diskVendorPrices(part_name, company);
 		
 		if(pcpart != null && !pcpart.isEmpty()) {
 			return pcpart;

@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,10 +35,13 @@ public class UserAuthController {
 	@Autowired
 	AuthenticationManager am;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	@RequestMapping(value = "/create/customer" , method = RequestMethod.POST)
 	public TechRingResponse userSignUpCustomer(@RequestBody UserSignUpRequest userSignUpRequest) {
 		
-		HashMap<String, String> hm = userService.userSignUp(userSignUpRequest);
+		HashMap<String, String> hm = userService.userSignUp(userSignUpRequest, "customer");
 		
 		TechRingResponse mongoResponse = new TechRingResponse();
 		mongoResponse.setResponseCode("111");
@@ -49,7 +53,7 @@ public class UserAuthController {
 	@RequestMapping(value = "/create/vendor" , method = RequestMethod.POST)
 	public TechRingResponse userSignUpVendor(@RequestBody UserSignUpRequest userSignUpRequest) {
 		
-		HashMap<String, String> hm = userService.userSignUp(userSignUpRequest);
+		HashMap<String, String> hm = userService.userSignUp(userSignUpRequest, "vendor");
 		
 		TechRingResponse mongoResponse = new TechRingResponse();
 		mongoResponse.setResponseCode("111");
@@ -62,16 +66,17 @@ public class UserAuthController {
 	@RequestMapping(value = "/login" , method = RequestMethod.POST)
 	public TechRingResponse userLogin(@RequestBody UserSignInRequest userSignInRequest) {
 		
-		Authentication authentication = am.authenticate(new UsernamePasswordAuthenticationToken(
-				userSignInRequest.getUserName() , userSignInRequest.getPassword()));
-		
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
-		String token = jwtTokenProvider.generateToken(authentication);
-		
+//		Authentication authentication = am.authenticate(new UsernamePasswordAuthenticationToken(
+//				userSignInRequest.getUsername() , passwordEncoder.encode(userSignInRequest.getPassword())));
+//		
+//		SecurityContextHolder.getContext().setAuthentication(authentication);
+//		
+//		String token = jwtTokenProvider.generateToken(authentication);
+//		
 		TechRingResponse response = new TechRingResponse();
 		response.setResponseCode("111");
-		response.setResponseObject(new JwtAuthenticationResponse(token));
-		
+//		response.setResponseObject(new JwtAuthenticationResponse(token));
+//		System.out.println(token);
 		return response;
-	}}
+	}
+}

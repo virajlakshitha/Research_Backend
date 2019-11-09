@@ -50,4 +50,18 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	@Override
+	public User findByuserName(String username) {
+		try {
+			Query query = new Query();
+			query.addCriteria(Criteria.where("username").is(username));
+			return mongoTemplate.findOne(query, User.class);
+		} catch(Exception e) {
+			return null;
+		}
+		
+	}
+	
+	
+
 }

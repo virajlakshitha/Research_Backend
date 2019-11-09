@@ -30,6 +30,8 @@ public class Cpu {
 	private String socket;	
 	
 	private String points;
+	
+	private String user_rating;
 
 	public String getId() {
 		return id;
@@ -125,5 +127,13 @@ public class Cpu {
 
 	public void setPoints(String points) {
 		this.points = points;
+	}
+
+	public String getUser_rating() {
+		return user_rating;
+	}
+
+	public void setUser_rating(String user_rating) {
+		this.user_rating = user_rating;
 	}
 }
