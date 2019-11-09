@@ -42,6 +42,7 @@ public class PCPartDaoImpl implements PCPartDao{
 		try {
 			
 			if(partName.equals("all")) {
+				System.out.println("**********" + partName);
 				return mongoTemplate.findAll(Ram.class);
 			}
 			else {
