@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.tech.ring.domain.Game;
+import com.tech.ring.domain.Laptop;
 import com.tech.ring.domain.LaptopBrands;
 
 @Repository
@@ -49,6 +50,18 @@ public class GameDaoImpl implements GameDao{
 			
 			return mongoTemplate.findAll(Game.class);
 			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Game findById(String id) {
+		try {
+			
+			Query query = new Query();
+			query.addCriteria(Criteria.where("_id").is(id));
+			return mongoTemplate.findOne(query, Game.class);
 		} catch (Exception e) {
 			return null;
 		}

@@ -80,6 +80,8 @@ public class PCPartController {
 		List<Object> all = null;
 		TechRingResponse techRingResponse = new TechRingResponse();
 		
+		System.out.println("----------->" +category);
+		
 		if(category.equals("ram")) {
 			ram = pcpartService.getRamPartsByName(name);
 			techRingResponse.setResponseCode("111");
@@ -109,7 +111,8 @@ public class PCPartController {
 		return techRingResponse;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET , value = "")
+	 
+	@RequestMapping(method = RequestMethod.GET , value = "/ram/all")
 	public TechRingResponse getPCParsAll() {
 		
 		List<Ram> ram = pcpartService.getRamParts();

@@ -79,6 +79,18 @@ public class GameController {
 		
 		return response; 
 	}
+	
+	@RequestMapping(method = RequestMethod.GET , value = "/findById/{id}")
+	public TechRingResponse findGameById(@PathVariable("id") String id) {
+		
+		Game game = gameService.findById(id);
+		
+		TechRingResponse techRingResponse = new TechRingResponse();
+		techRingResponse.setResponseCode("111");
+		techRingResponse.setResponseObject(game);
+		
+		return techRingResponse;
+	}
  
 }
 

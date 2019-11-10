@@ -61,12 +61,10 @@ public class PCPartServiceImpl implements PCPartService{
 		
 		List<Ram> pcpart = pcpartDao.findByRamPartByName(name);
 		
-		if(pcpart != null && !pcpart.isEmpty()) {
+		System.out.println(pcpart);
+		System.out.println(name); 
 			return pcpart;
-		}
-		else {
-			throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_FOUND);
-		}
+		 
 	}
 
 	@Override
