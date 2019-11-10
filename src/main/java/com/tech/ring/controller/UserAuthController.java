@@ -8,11 +8,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tech.ring.domain.User;
 import com.tech.ring.request.UserSignInRequest;
 import com.tech.ring.request.UserSignUpRequest;
 import com.tech.ring.response.JwtAuthenticationResponse;
@@ -78,5 +80,17 @@ public class UserAuthController {
 //		response.setResponseObject(new JwtAuthenticationResponse(token));
 //		System.out.println(token);
 		return response;
+	}
+	
+	@RequestMapping(value = "/users/{id}" , method = RequestMethod.GET)
+	public TechRingResponse getUserDetails(@PathVariable("id") String id) {
+		
+		User hm = userService.getUsers(id);
+		
+		TechRingResponse mongoResponse = new TechRingResponse();
+		mongoResponse.setResponseCode("111");
+		mongoResponse.setResponseObject(hm);
+		
+		return mongoResponse;
 	}
 }

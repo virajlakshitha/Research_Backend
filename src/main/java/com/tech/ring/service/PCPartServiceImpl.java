@@ -399,13 +399,13 @@ public class PCPartServiceImpl implements PCPartService{
 
 	@Override
 	public HashMap<String, String> pushNotification(NotificationRequest notificationRequest) {
-		Notification res = pcpartDao.checkNotification(notificationRequest.getId(), notificationRequest.getProduct());
+//		Notification res = pcpartDao.checkNotification(notificationRequest.getId(), notificationRequest.getProduct());
 		
-		if(res == null) {
+//		if(res == null) {
 			Notification newNotify = new Notification();
 			
-			newNotify.setEmail(res.getEmail());
-			newNotify.setProduct(res.getProduct());
+			newNotify.setEmail("virajlakshitha39@gmail.com");
+			newNotify.setProduct(notificationRequest.getProduct());
 			
 			Notification notifyResult = pcpartDao.pushNotification(newNotify);
 			
@@ -419,10 +419,10 @@ public class PCPartServiceImpl implements PCPartService{
 			else {
 				throw new TechRingException(TechRingApplicationErrors.PCPART_NOT_CREATED);
 			}
-		}
-		else {
-			throw new TechRingException(TechRingApplicationErrors.PCPART_ALLREADY_EXISTS);
-		}
+//		}
+//		else {
+//			throw new TechRingException(TechRingApplicationErrors.PCPART_ALLREADY_EXISTS);
+//		}
 		
 	}
 

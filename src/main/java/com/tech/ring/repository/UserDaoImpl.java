@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 			Query query = new Query();
-			query.addCriteria(Criteria.where("username").is(username).and("password").is(password));
+			query.addCriteria(Criteria.where("userName").is(username).and("password").is(password));
 			
 			return mongoTemplate.findOne(query, User.class);
 		} catch(Exception e) {
@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao {
 	public User findByuserName(String username) {
 		try {
 			Query query = new Query();
-			query.addCriteria(Criteria.where("username").is(username));
+			query.addCriteria(Criteria.where("userName").is(username));
 			return mongoTemplate.findOne(query, User.class);
 		} catch(Exception e) {
 			return null;

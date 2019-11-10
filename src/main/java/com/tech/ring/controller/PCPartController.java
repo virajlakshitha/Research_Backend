@@ -214,8 +214,9 @@ public class PCPartController {
 	@RequestMapping(method = RequestMethod.POST , value = "/notify")
 	public TechRingResponse pushNotification(@RequestBody NotificationRequest notificationRequest) {
 		TechRingResponse techRingResponse = new TechRingResponse();
+		System.out.println(notificationRequest.getPrice()+"  "+notificationRequest.getPrice());
 		
-		User user = userService.getUsers(notificationRequest.getId());
+		//User user = userService.getUsers(notificationRequest.getId());
 		HashMap<String, String> hm = pcpartService.pushNotification(notificationRequest);
 		techRingResponse.setResponseCode("111");
 		
